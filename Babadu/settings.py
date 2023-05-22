@@ -86,9 +86,6 @@ DATABASES = {
         'PASSWORD': 'YWIjglE6CVqBTYFwOOG6',
         'HOST': 'containers-us-west-122.railway.app',
         'PORT': '5688',
-        'OPTIONS': {
-            'options': '-c search_path=babadu'
-        }
     }
 }
 
