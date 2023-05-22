@@ -1,5 +1,5 @@
 """
-ASGI config for project_django project.
+ASGI config for Babadu project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

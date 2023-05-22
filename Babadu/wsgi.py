@@ -1,5 +1,5 @@
 """
-WSGI config for project_django project.
+WSGI config for Babadu project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
