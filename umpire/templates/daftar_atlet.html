@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Daftar Atlet</title>
+{% endblock meta %}
+
+{% block content %}
+
+
+<main class="mx-auto mt-[15vh] mb-[8vh] min-h-[calc(60vh-4rem)] max-w-[160vh]">
+
+    <!--Atlet Kualifikasi -->
+    <h1 class="text-2xl font-bold text-center mb-12">Atlet Kualifikasi</h2>
+
+    <div class="col-lg-6 col-md-4 col-sm-4 container justify-content-center">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Nama</th>
+                <th scope="col">Tanggal Lahir</th>
+                <th scope="col">Negara Asal</th>
+                <th scope="col">Play Right</th>
+                <th scope="col">Height </th>
+                <th scope="col">World Rank</th>
+                <th scope="col">World Tour Rank</th>
+                <th scope="col">Jenis Kelamin</th>
+                <th scope="col">Total Point</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atlet in atlet_kualifikasi %}
+            <tr>
+                <td>{{ atlet.nama }}</td>
+                <td>{{ atlet.tgl_lahir }}</td>
+                <td>{{ atlet.negara_asal }}</td>
+                {% if atlet.play_right %} <td>Ya</td> {% else %} <td>Tidak</td> {% endif%}
+                <td>{{ atlet.height }}</td>
+                <td>{{ atlet.world_rank }}</td>
+                <td>{{ atlet.world_tour_rank }}</td>
+                {% if atlet.jenis_kelamin %} <td>Laki-laki</td> {% else %} <td>Perempuan</td> {% endif%}
+                <td>{{ atlet.total_point }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <!--Atlet Non Kualifikasi -->
+    <h1 class="text-2xl font-bold text-center mt-20 mb-12">Atlet Non Kualifikasi</h2>
+
+        <div class="col-lg-6 col-md-4 col-sm-4 container justify-content-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Tanggal Lahir</th>
+                    <th scope="col">Negara Asal</th>
+                    <th scope="col">Play Right</th>
+                    <th scope="col">Height </th>
+                    <th scope="col">World Rank</th>
+                    <th scope="col">Jenis Kelamin</th>
+                    <th scope="col">Total Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atlet in atlet_non_kualifikasi %}
+                <tr>
+                    <td>{{ atlet.nama }}</td>
+                    <td>{{ atlet.tgl_lahir }}</td>
+                    <td>{{ atlet.negara_asal }}</td>
+                    {% if atlet.play_right %} <td>Ya</td> {% else %} <td>Tidak</td> {% endif%}
+                    <td>{{ atlet.height }}</td>
+                    <td> - </td>
+                    {% if atlet.jenis_kelamin %} <td>Laki-laki</td> {% else %} <td>Perempuan</td> {% endif%}
+                    <td> 0 </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+    <!--Atlet Ganda -->
+    <h1 class="text-2xl font-bold text-center mt-20 mb-12">Atlet Ganda</h2>
+
+        <div class="col-lg-6 col-md-4 col-sm-4 container justify-content-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID Atlet Ganda</th>
+                    <th scope="col">Nama atlet 1</th>
+                    <th scope="col">Nama atlet 2</th>
+                    <th scope="col">Total Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atlet in atlet_ganda %}
+                <tr>
+                    <td>{{ atlet.id_atlet_ganda }}</td>
+                    <td>{{ atlet.nama_1 }}</td>
+                    <td>{{ atlet.nama_2 }}</td>
+                    <td>{{ atlet.total_point }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+</main>
+{% endblock content %}
