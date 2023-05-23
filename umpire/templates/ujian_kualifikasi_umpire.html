@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | PELATIH </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- Pills navs -->
+    <div class="my-5 d-flex justify-content-center align-items-center">
+        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
+            <h1 class="text-center mb-4 text-primary">List Ujian Kualifikasi</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tahun</th>
+                        <th scope="col">Batch</th>
+                        <th scope="col">Tempat Pelaksanaan</th>
+                        <th scope="col">Tanggal Pelaksanaan</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider align-middle">
+                    {% for ujian_kualifikasi in ujian_kualifikasi %}
+                    <tr>
+                      <td>{{ ujian_kualifikasi.tahun }}</td>
+                      <td>{{ ujian_kualifikasi.batch }}</td>
+                      <td>{{ ujian_kualifikasi.tempat }}</td>
+                      <td>{{ ujian_kualifikasi.tanggal }}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</main>
+
+<style>
+    .table {
+        --bs-table-striped-bg: #f2f9f8;
+
+    }
+</style>
+{% endblock content %}

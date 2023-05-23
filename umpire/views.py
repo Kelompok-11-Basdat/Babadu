@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.db import InternalError
+from django.shortcuts import redirect, render
 from util.query import *
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from umpire.query import *
 
 def show_daftar_atlet(request):
     atlet_kualifikasi = execute("""
@@ -50,5 +54,50 @@ def show_daftar_atlet(request):
 
     return render(request, "daftar_atlet.html", context)
 
+def buat_tes_kualifikasi(tahun, batch, tempat, tanggal):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SET SEARCH_PATH TO BABADU;")
+        query = sql_insert_ujian_kualifikasi(tahun, batch, tempat, tanggal)
+        cursor.execute(query)
+    except InternalError as e:
+        return {
+            'success': False,
+            'msg': str(e.args)
+        }
+    else:
+        return {
+            'success': True,
+        }
 
+@csrf_exempt
+def form_buat_ujian_kualifikasi(request):
+    if request.method == 'POST':
+         if 'submitFormUjian' in request.POST:
+            tahun = request.POST.get('tahun')
+            batch = request.POST.get('batch')
+            tempat = request.POST.get('tempat')
+            tanggal = request.POST.get('tanggal')
+            data = buat_tes_kualifikasi(tahun, batch, tempat, tanggal)
+            if data['success']:
+                return redirect('umpire:list_ujian_kualifikasi_umpire')
+            else:
+                messages.info(request,data['msg'])
+    return render(request, "form_kualifikasi.html")
 
+def ujian_kualifikasi_umpire(request):
+    #GET LIST UJIAN KUALIFIKASI
+    ujian_kualifikasi = execute("""
+    SELECT
+        Tahun,
+        Batch,
+        Tempat,
+        Tanggal
+    FROM UJIAN_KUALIFIKASI;
+    """)
+
+    context = {
+        "ujian_kualifikasi": ujian_kualifikasi,
+    }
+
+    return render(request, "ujian_kualifikasi_umpire.html", context)
