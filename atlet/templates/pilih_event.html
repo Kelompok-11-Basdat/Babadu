@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
+  <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+    <div>
+      <h1 class="custom-heading">Daftar Event</h1>
+      <div style="overflow: auto;">
+        <table class="table table-bordered custom-table">
+          <thead style="background-color: #1ABC9C; color: white;">
+            <tr>
+              <th scope="col" class="no-border-bottom">Nama Event</th>
+              <th scope="col" class="no-border-bottom">Total Hadiah</th>
+              <th scope="col" class="no-border-bottom">Tanggal Mulai</th>
+              <th scope="col" class="no-border-bottom">Kategori</th>
+              <th scope="col" class="no-border-bottom">Kapasitas</th>
+              <th scope="col" class="no-border-bottom"></th>
+            </tr>
+          </thead>
+
+          <tbody class="table-group-divider align-middle bg-white">
+            <tr>
+              <td>Event A</td>
+              <td>Rp 5.000.000</td>
+              <td>12-04-2023</td>
+              <td>S200</td>
+              <td>3/8</td>
+              <td><button class="btn btn-primary" type="submit"><a href="kategori">Pilih</a></button></td>
+            </tr>
+            <tr>
+              <td>Event B</td>
+              <td>Rp 4.000.000</td>
+              <td>27-07-2023</td>
+              <td>S100</td>
+              <td>8/8</td>
+              <td><button class="btn btn-primary" type="submit"><a href="kategori">Pilih</a></button></td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.table-bordered tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-table {
+  width: 80%;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+</style>
+
+{% endblock content %}

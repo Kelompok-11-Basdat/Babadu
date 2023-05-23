@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
+  <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+    <div class="container-sm mx-5 p-5 shadow-sm">
+      <h1 class="mb-5 custom-heading">PILIH KATEGORI</h1>
+
+      <div class="container">
+        <div class="row">
+          <table class="table table-bordered custom-table">
+            <tbody class="table-group-divider bg-white">
+              <tr>
+                <th scope="col">Event</th>
+                <td>Event A</td>
+              </tr>
+              <tr>
+                <th scope="col">Hadiah</th>
+                <td>Rp 5.000.000</td>
+
+              </tr>
+              <tr>
+                <th scope="col">Tanggal Mulai</th>
+                <td>12-04-2023</td>
+              </tr>
+              <tr>
+                <th scope="col">Tanggal Selesai</th>
+                <td>15-04-2023</td>
+              </tr>
+              <tr>
+                <th scope="col">Kategori</th>
+                <td>S200</td>
+              </tr>
+              <tr>
+                <th scope="col">Kapasitas</th>
+                <td>50/64</td>
+              </tr>
+              <tr>
+                <th scope="col">Negara</th>
+                <td>Indonesia</td>
+              </tr>
+              <tr>
+                <th scope="col">Stadium</th>
+                <td>GBK</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div style="margin-top: 50px;"></div>
+          <table class="table table-bordered custom-table">
+            <thead class="thead-dark " style="background-color: #1ABC9C; color: white;">
+              <tr>
+                <th scope="col">Kategori</th>
+                <th scope="col">Partner</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider bg-white">
+              <tr>
+                <td>Tunggal Putra</td>
+                <td>-</td>
+                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
+              </tr>
+              <tr>
+                <td>Ganda Putra</td>
+                <td>
+                  <select class="form-select w-50" aria-label="Default select example" required>
+                    <option selected>Pilih Atlet</option>
+                    <option value="1">Atlet 1</option>
+                    <option value="2">Atlet 2</option>
+                    <option value="3">Atlet 3</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
+              </tr>
+              <tr>
+                <td>Ganda Campuran</td>
+                <td>
+                  <select class="form-select w-50" aria-label="Default select example" required>
+                    <option selected>Pilih Atlet</option>
+                    <option value="1">Atlet 1</option>
+                    <option value="2">Atlet 2</option>
+                    <option value="3">Atlet 3</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+.custom-table {
+  width: 100%;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+</style>
+
+{% endblock content %}
