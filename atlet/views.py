@@ -6,7 +6,7 @@ from django.db import connection, InternalError
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
-from atlet.query import *
+
 from util.query import *
 
 # Create your views here.
