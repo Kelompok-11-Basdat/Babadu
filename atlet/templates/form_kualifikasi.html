@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- P<main>
+    <!-- Pills navs -->
+
+    <div class="d-flex my-5 mx-auto justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+        <div class="col-md-4 p-5 shadow-sm border rounded-5">
+            <h1 class="custom-heading mb-3">Form Data Kualifikasi</h1>
+
+            <form>
+                <div class="mb-3">
+                    <label for="inputNoBatch" class="form-label">Nomor Batch</label>
+                    <input type="text" class="form-control border border-primary" id="inputNoBatch">
+                </div>
+                <div class="mb-3">
+                    <label for="inputTempat" class="form-label">Tempat Pelaksanaan</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Pilih Tempat</option>
+                        <option value="1">Jakarta</option>
+                        <option value="2">Bali</option>
+                        <option value="3">Surabaya</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="inputTanggal" class="form-label">Tanggal Pelaksanaan</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Pilih Tanggal</option>
+                        <option value="1">15 Maret 2023</option>
+                        <option value="2">30 Maret 2023</option>
+                        <option value="3">15 April 2023</option>
+                        <option value="3">30 April 2023</option>
+                    </select>
+                </div>
+
+
+                <div class="d-grid mt-5">
+                    <button class="blue-button" type="submit"><a href="{% url 'atlet:tes_kualifikasi' %}">Next</a></button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Pills content -->
+</main>
+
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color:white;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-label {
+    color:white;
+}
+</style>
+
+</style>
+
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<!-- </main> -->
+{% endblock content %}

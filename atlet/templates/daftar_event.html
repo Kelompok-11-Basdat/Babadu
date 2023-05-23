@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
+  <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+    <div>
+      <h1 class="custom-heading">Daftar Event</h1>
+      <div style="overflow: auto;">
+        <table class="table table-bordered custom-table">
+          <thead style="background-color: #1ABC9C; color: white;">
+            <tr>
+              <th scope="col" class="no-border-bottom">Nama Stadium</th>
+              <th scope="col" class="no-border-bottom">Negara</th>
+              <th scope="col" class="no-border-bottom">Kapasitas</th>
+              <th scope="col" class="no-border-bottom"></th>
+            </tr>
+          </thead>
+
+          <tbody class="table-group-divider align-middle" style="background-color: white;">
+            <tr>
+              <td>GBK</td>
+              <td>Indonesia</td>
+              <td>8</td>
+              <td>
+                <button class="blue-button" type="submit"><a href="stadium/event/">Pilih</a></button>
+              </td>
+            </tr>
+            <tr>
+              <td>Senayan</td>
+              <td>Indonesia</td>
+              <td>16</td>
+              <td>
+                <button class="blue-button" type="submit"><a href="stadium/event/">Pilih</a></button>
+              </td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table-bordered tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-table {
+  width: 80%;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+</style>
+{% endblock content %}

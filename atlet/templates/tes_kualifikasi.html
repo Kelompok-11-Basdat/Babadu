@@ -1,0 +1,196 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+
+    <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+        <div class="col-md-6 mx-5 p-5 shadow-sm border rounded-5 border-primary">
+            <h1 class="custom-heading">Pertanyaan Kualifikasi</h1>
+
+
+            <form>
+                <div class="mb-3">
+                    <p class="form-label">Apa istilah yang digunakan ketika pemain memukul shuttlecock sebelum jatuh di dalam lapangan lawan?</p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="option1" >
+                        <label class="form-check-label">
+                            Let
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="option2">
+                        <label class="form-check-label">
+                            Fault
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question1" value="option3">
+                        <label class="form-check-label">
+                            Out
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="form-label">Bulu tangkis merupakan salah satu olahraga yang paling populer di Indonesia. Pada tahun berapa Indonesia meraih medali emas pertamanya dalam bulu tangkis di Olimpiade?</p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="option1">
+                        <label class="form-check-label">
+                            1992
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="option2" >
+                        <label class="form-check-label">
+                            1996
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question2" value="option3">
+                        <label class="form-check-label">
+                            2000
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="form-label">Siapa pemain bulu tangkis putri yang memegang rekor untuk jumlah medali emas terbanyak dalam sejarah Kejuaraan Dunia Bulu Tangkis?</p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="option1">
+                        <label class="form-check-label">
+                            Zhang Ning
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="option2">
+                        <label class="form-check-label">
+                            Carolina Marin
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question3" value="option3">
+                        <label class="form-check-label">
+                            Li Xuerui
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="form-label">Siapa pemain bulu tangkis putra Indonesia yang meraih gelar juara dunia pada tahun 2019?</p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="option1" >
+                        <label class="form-check-label">
+                            Kento Momota
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="option2">
+                        <label class="form-check-label">
+                            Viktor Axelsen
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question4" value="option3">
+                        <label class="form-check-label">
+                            Anthony Sinisuka Ginting
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="form-label">Seorang pemain dinyatakan menang dalam satu set permainan bulu tangkis apa bila telah mencapai angka</p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="option1">
+                        <label class="form-check-label">
+                            21
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="option2">
+                        <label class="form-check-label">
+                            11
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question5" value="option3">
+                        <label class="form-check-label">
+                            25
+                        </label>
+                    </div>
+                </div>
+
+
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="blue-button">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Pills content -->
+</main>
+
+<script>
+    function checkAnswers() {
+        // menyimpan jawaban yang benar
+        var correctAnswers = {
+        question1: "option2",
+        question2: "option2",
+        question3: "option3",
+        question4: "option3",
+        question5: "option1"
+        };
+
+        var selectedOptions = document.querySelectorAll('input[type="radio"]:checked');
+        var correctCount = 0;
+
+        for (var i = 0; i < selectedOptions.length; i++) {
+            var questionName = selectedOptions[i].name;
+            var selectedValue = selectedOptions[i].value;
+
+            if (correctAnswers[questionName] === selectedValue) {
+            correctCount++;
+            }
+        }
+
+        var lulus = false;
+        if (correctCount >= 4) {
+            lulus = true;
+        }
+
+    }
+</script>
+
+
+<style>
+.form-check-label{
+    color: #212529;
+}
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
+
+
+
+{% endblock content %}
