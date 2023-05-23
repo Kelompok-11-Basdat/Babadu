@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-3@5wx%(^*zl68l(o$^m-3%cvjv0g&mom1ra=oj5f048_al57s7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['babadu-e11.up.railway.app']
+ALLOWED_HOSTS = ['localhost', 'babadu-e11.up.railway.app']
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'atlet',
+    'umpire',
 ]
 
 MIDDLEWARE = [
