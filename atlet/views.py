@@ -14,7 +14,15 @@ def tes_kualifikasi(request):
     return render(request, "tes_kualifikasi.html")
 
 def daftar_event(request):
-    return render(request, "daftar_event.html")
+    stadium = execute("""
+                        SELECT Nama, Alamat, Kapasitas, Negara
+                        FROM STADIUM;
+                        """)
+    context = {
+        "stadium": stadium,
+    }
+    return render(request, "daftar_event.html", context)
+
 
 def pilih_event(request, stadium):
     return render(request, "pilih_event.html")

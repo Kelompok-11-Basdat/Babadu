@@ -23,27 +23,15 @@
 
           <tbody class="table-group-divider align-middle" style="background-color: white;">
             <tr>
-              <td>GBK</td>
-              <td>Indonesia</td>
-              <td>8</td>
+              {% for stadium in stadium %}
+              <td>{{ stadium.nama }}</td>
+              <td>{{ stadium.negara }}</td>
+              <td>{{ stadium.kapasitas }}</td>
               <td>
                 <button class="blue-button" type="submit"><a href="stadium/event/">Pilih</a></button>
               </td>
             </tr>
-            <tr>
-              <td>Senayan</td>
-              <td>Indonesia</td>
-              <td>16</td>
-              <td>
-                <button class="blue-button" type="submit"><a href="stadium/event/">Pilih</a></button>
-              </td>
-            </tr>
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
