@@ -18,36 +18,20 @@
               <th scope="col" class="no-border-bottom">Total Hadiah</th>
               <th scope="col" class="no-border-bottom">Tanggal Mulai</th>
               <th scope="col" class="no-border-bottom">Kategori</th>
-              <th scope="col" class="no-border-bottom">Kapasitas</th>
               <th scope="col" class="no-border-bottom"></th>
             </tr>
           </thead>
 
           <tbody class="table-group-divider align-middle bg-white">
             <tr>
-              <td>Event A</td>
-              <td>Rp 5.000.000</td>
-              <td>12-04-2023</td>
-              <td>S200</td>
-              <td>3/8</td>
-              <td><button class="btn btn-primary" type="submit"><a href="kategori">Pilih</a></button></td>
+              {% for event in events %}
+              <td>{{ event.nama_event }}</td>
+              <td>{{ event.total_hadiah }}</td>
+              <td>{{ event.tgl_mulai }}</td>
+              <td>{{ event.kategori_superseries }}</td>
+              <td><button class="btn btn-primary" type="submit">Pilih</button></td>
             </tr>
-            <tr>
-              <td>Event B</td>
-              <td>Rp 4.000.000</td>
-              <td>27-07-2023</td>
-              <td>S100</td>
-              <td>8/8</td>
-              <td><button class="btn btn-primary" type="submit"><a href="kategori">Pilih</a></button></td>
-            </tr>
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

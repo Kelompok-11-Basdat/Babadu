@@ -14,18 +14,33 @@ def tes_kualifikasi(request):
     return render(request, "tes_kualifikasi.html")
 
 def daftar_event(request):
+    # with connection.cursor() as cursor:
+    #     cursor.execute("SELECT Nama, Alamat, Kapasitas, Negara FROM STADIUM;")
+    #     stadium = cursor.fetchall()
     stadium = execute("""
                         SELECT Nama, Alamat, Kapasitas, Negara
                         FROM STADIUM;
                         """)
     context = {
-        "stadium": stadium,
+        "stadiums": stadium,
     }
+
     return render(request, "daftar_event.html", context)
 
+def pilih_stadium(request, pk):
+    # query_stadium = "SELECT Nama, Alamat, Kapasitas, Negara FROM STADIUM WHERE Nama = '{}' LIMIT 1".format(pk)
+    # stadium = execute(query_stadium)
+    # print(stadium)
 
-def pilih_event(request, stadium):
-    return render(request, "pilih_event.html")
+    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai > CURRENT_DATE".format(pk)
+    events = execute(query_events)
+    print(events)
+
+    context = {
+        # 'stadium': stadium,
+        'events': events
+    }
+    return render(request, "pilih_event.html", context)
 
 def pilih_kategori(request, stadium, event):
     return render(request, "pilih_kategori.html")
