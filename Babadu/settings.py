@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'atlet',
     'umpire',
+    'dashboard_atlet'
 ]
 
 MIDDLEWARE = [
