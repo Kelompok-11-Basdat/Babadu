@@ -14,3 +14,10 @@ def execute(query):
             for row in cursor.fetchall()
         ]
     return results
+
+def executeUPDATE(query):
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        # Since it's an UPDATE query, there are no results to fetch
+        # You can simply return None or a success message
+        return "Update query executed successfully."

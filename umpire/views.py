@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.db import InternalError
+from django.shortcuts import redirect, render
 from util.query import *
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from umpire.query import *
 
 def show_daftar_atlet(request):
     atlet_kualifikasi = execute("""
@@ -50,5 +54,77 @@ def show_daftar_atlet(request):
 
     return render(request, "daftar_atlet.html", context)
 
+def buat_tes_kualifikasi(tahun, batch, tempat, tanggal):
+    try:
+        query = execute(f"""
+        INSERT INTO 
+            UJIAN_KUALIFIKASI(Tahun, Batch, Tempat, Tanggal)
+        VALUES
+        (
+            {tahun},
+            {batch},
+            {tempat},
+            '{tanggal}'
+        );
+        """)
+    except InternalError as e:
+        return {
+            'success': False,
+            'msg': str(e.args)
+        }
+    else:
+        return {
+            'success': True,
+        }
+        
 
+@csrf_exempt
+def form_buat_ujian_kualifikasi(request):
+    if request.method == 'POST':
+         if 'submitFormUjian' in request.POST:
+            tahun = request.POST.get('tahun')
+            batch = request.POST.get('batch')
+            tempat = request.POST.get('tempat')
+            tanggal = request.POST.get('tanggal')
+            data = buat_tes_kualifikasi(tahun, batch, tempat, tanggal)
+            if data['success']:
+                return redirect('umpire:ujian_kualifikasi_umpire')
+            else:
+                messages.info(request,data['msg'])
+    return render(request, "form_kualifikasi.html")
 
+def ujian_kualifikasi_umpire(request):
+    # GET UJIAN KUALIFIKASI from database
+    ujian_kualifikasi = execute("""
+    SELECT
+        Tahun,
+        Batch,
+        Tempat,
+        Tanggal
+    FROM UJIAN_KUALIFIKASI;
+    """)
+
+    context = {
+        "ujian_kualifikasi": ujian_kualifikasi,
+    }
+
+    return render(request, "ujian_kualifikasi_umpire.html", context)
+
+def riwayat_ujian_kualifikasi_umpire(request):
+    #GET RIWAYAT UJIAN KUALIFIKASI
+    riwayat_ujian_kualifikasi_umpire = execute("""
+    SELECT
+        nama,
+        tahun,
+        batch,
+        tempat,
+        tanggal,
+        Hasil_Lulus
+    FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id
+    """)
+
+    context = {
+        "riwayat_ujian_kualifikasi_umpire": riwayat_ujian_kualifikasi_umpire,
+    }
+
+    return render(request, "riwayat_ujian_kualifikasi_umpire.html", context)
