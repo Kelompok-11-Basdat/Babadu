@@ -10,7 +10,7 @@
 
 <main>
 
-    <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+    <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: white">
         <div class="col-md-6 mx-5 p-5 shadow-sm border rounded-5 border-primary">
             <h1 class="custom-heading">Pertanyaan Kualifikasi</h1>
 
@@ -127,10 +127,8 @@
                     </div>
                 </div>
 
-
-
                 <div class="d-grid mt-5">
-                    <button type="submit" class="blue-button">Submit</button>
+                    <button type="submit" id="btnSubmit" class="blue-button">Submit</button>
                 </div>
             </form>
 
@@ -140,36 +138,67 @@
     <!-- Pills content -->
 </main>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
     function checkAnswers() {
-        // menyimpan jawaban yang benar
         var correctAnswers = {
-        question1: "option2",
-        question2: "option2",
-        question3: "option3",
-        question4: "option3",
-        question5: "option1"
-        };
+        question1: "option1",
+        question2: "option1",
+        question3: "option1",
+        question4: "option1",
+        question5: "option1" };
 
+        var correct = 0;
         var selectedOptions = document.querySelectorAll('input[type="radio"]:checked');
-        var correctCount = 0;
+        
 
         for (var i = 0; i < selectedOptions.length; i++) {
             var questionName = selectedOptions[i].name;
             var selectedValue = selectedOptions[i].value;
 
             if (correctAnswers[questionName] === selectedValue) {
-            correctCount++;
+            correct++;
             }
         }
 
         var lulus = false;
-        if (correctCount >= 4) {
+        if (correct >= 4) {
             lulus = true;
         }
 
+        return lulus;
+
     }
+
+    var indexUrl = '{% url "atlet:tes_kualifikasi" %}';
+    var riwayatUjianKualifikasiUrl = '{% url "atlet:riwayat_ujian_kualifikasi" %}';
+
+    $(document).ready(function() {
+        $("#btnSubmit").click(function(e) {
+            e.preventDefault()
+            var lulus = checkAnswers()
+            if (lulus = true) {
+                $.ajax({
+                method: 'POST',
+                url: indexUrl,
+                data: {
+                    lulus: lulus,
+                },
+                success: function(response) {
+                    window.location.href = riwayatUjianKualifikasiUrl;
+                },
+                
+            });
+            }
+
+
+        });
+    });
 </script>
+
+
+
 
 
 <style>

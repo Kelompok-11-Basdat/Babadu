@@ -10,9 +10,9 @@
 
 <main>
     <!-- Pills navs -->
-    <div class="my-5 d-flex justify-content-center align-items-center">
+    <div class="my-5 d-flex justify-content-center align-items-center"  >
         <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
-            <h1 class="text-center mb-4 text-primary">List Ujian Kualifikasi</h1>
+            <h1 class="text-center mb-4 custom-heading">List Ujian Kualifikasi</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -40,9 +40,14 @@
 </main>
 
 <style>
-    .table {
-        --bs-table-striped-bg: #f2f9f8;
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+.table {
+--bs-table-striped-bg: #f2f9f8;
 
-    }
+}
 </style>
 {% endblock content %}

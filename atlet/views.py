@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from django.shortcuts import render, redirect
@@ -11,8 +12,114 @@ from atlet.query import *
 from Babadu.helper.function import *
 
 # Create your views here.
+
+@csrf_exempt
+def atlet_ikut_ujian(request):
+    print(request.method)
+    if request.method == 'POST':
+        tahun = request.POST.get("tahun")
+        batch = request.POST.get("batch")
+        tempat = request.POST.get("tempat")
+        tanggal = request.POST.get("tanggal")
+
+        testIsinya = execute(f"""
+            SELECT 
+                tahun, 
+                batch, 
+                tempat, 
+                tanggal
+            FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
+            WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+                AND tahun = '{tahun}'
+                AND batch = '{batch}'
+                AND tempat = '{tempat}'
+                AND tanggal = '{tanggal}'
+        """)
+
+        print("INI KALO GAK NONE")
+
+        if testIsinya == None :
+            
+            executeUPDATE(f"""
+                INSERT INTO ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI (ID_Atlet, Tahun, Batch, Tempat, Tanggal, Hasil_Lulus)
+                VALUES ('cd5fa76b-a614-44be-a639-0edc650f7dd2', {tahun}, {batch}, '{tempat}', '{tanggal}', 'false');
+                """)
+            
+            print("INI KALO NONE")
+            
+            return HttpResponse(status=200)
+
+        return HttpResponse(status=400)
+
+
+    else :
+        return HttpResponse(status=404)
+
+@csrf_exempt
 def tes_kualifikasi(request):
-    return render(request, "tes_kualifikasi.html")
+    if request.method == 'GET':
+        return render(request, "tes_kualifikasi.html")
+    elif request.method == 'POST':
+        lulus = request.POST.get('lulus')
+        if lulus == 'true' :
+            executeUPDATE("""
+                UPDATE ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
+                SET Hasil_Lulus = true
+                WHERE ID_Atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+                    AND (Tahun, Batch, Tempat, Tanggal) = (
+                        SELECT Tahun, Batch, Tempat, Tanggal
+                        FROM (
+                            SELECT Tahun, Batch, Tempat, Tanggal,
+                                ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS row_num
+                            FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
+                            WHERE ID_Atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+                            GROUP BY Tahun, Batch, Tempat, Tanggal
+                        ) AS subquery
+                        WHERE row_num = 1
+                    );
+            """)
+            # WHERE id_atlet = '{request.session['id']}';
+        
+            riwayat_ujian_kualifikasi = execute(f"""
+            SELECT 
+                tahun, 
+                batch, 
+                tempat, 
+                tanggal, 
+                hasil_lulus 
+            FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
+            WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2';
+            """)
+
+            context = {
+                "riwayat_ujian_kualifikasi": riwayat_ujian_kualifikasi,
+            }
+
+            return HttpResponse(status=200)
+
+        return render(request, "riwayat_ujian_kualifikasi.html", context)
+
+
+def sql_get_status_kualifikasi(id):
+    return f"""
+    SELECT 
+        K.World_Rank,
+        K.World_Tour_Rank,
+        CASE
+            WHEN K.ID_Atlet IS NOT NULL THEN 'Qualified'
+            ELSE 'Not Qualified'
+        END AS status_kualifikasi
+    FROM ATLET A
+    LEFT JOIN ATLET_KUALIFIKASI K ON K.ID_Atlet = A.ID
+    LEFT JOIN ATLET_NON_KUALIFIKASI N ON N.ID_Atlet = A.ID
+    WHERE A.ID = '{id}';
+    """
+
+"""
+    UPDATE atlet_nonkualifikasi_ujian_kualifikasi
+    SET Hasil_Lulus = true
+    WHERE ID_Atlet = '{id}';
+    """
 
 def daftar_event(request):
     return render(request, "daftar_event.html")
@@ -39,4 +146,30 @@ def ujian_kualifikasi(request):
     }
 
     return render(request, "ujian_kualifikasi.html", context)
+
+def get_riwayat_ujian_kualifikasi(request):
+    #GET RIWAYAT UJIAN KUALIFIKASI
+    # riwayat_ujian_kualifikasi = execute(f"""
+    # SELECT tahun, batch, tempat, tanggal, hasil_lulus FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
+    # WHERE id_atlet = '{request.session['id']}';
+    # """)
+
+    riwayat_ujian_kualifikasi = execute(f"""
+    SELECT 
+        tahun, 
+        batch, 
+        tempat, 
+        tanggal, 
+        hasil_lulus 
+    FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
+    WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2';
+    """)
+
+    context = {
+        "riwayat_ujian_kualifikasi": riwayat_ujian_kualifikasi,
+    }
+
+    return render(request, "riwayat_ujian_kualifikasi.html", context)
+
+
 

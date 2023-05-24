@@ -56,10 +56,17 @@ def show_daftar_atlet(request):
 
 def buat_tes_kualifikasi(tahun, batch, tempat, tanggal):
     try:
-        cursor = connection.cursor()
-        cursor.execute("SET SEARCH_PATH TO BABADU;")
-        query = sql_insert_ujian_kualifikasi(tahun, batch, tempat, tanggal)
-        cursor.execute(query)
+        query = execute(f"""
+        INSERT INTO 
+            UJIAN_KUALIFIKASI(Tahun, Batch, Tempat, Tanggal)
+        VALUES
+        (
+            {tahun},
+            {batch},
+            {tempat},
+            '{tanggal}'
+        );
+        """)
     except InternalError as e:
         return {
             'success': False,
@@ -69,6 +76,7 @@ def buat_tes_kualifikasi(tahun, batch, tempat, tanggal):
         return {
             'success': True,
         }
+        
 
 @csrf_exempt
 def form_buat_ujian_kualifikasi(request):
@@ -80,13 +88,13 @@ def form_buat_ujian_kualifikasi(request):
             tanggal = request.POST.get('tanggal')
             data = buat_tes_kualifikasi(tahun, batch, tempat, tanggal)
             if data['success']:
-                return redirect('umpire:list_ujian_kualifikasi_umpire')
+                return redirect('umpire:ujian_kualifikasi_umpire')
             else:
                 messages.info(request,data['msg'])
     return render(request, "form_kualifikasi.html")
 
 def ujian_kualifikasi_umpire(request):
-    #GET LIST UJIAN KUALIFIKASI
+    # GET UJIAN KUALIFIKASI from database
     ujian_kualifikasi = execute("""
     SELECT
         Tahun,
@@ -101,3 +109,22 @@ def ujian_kualifikasi_umpire(request):
     }
 
     return render(request, "ujian_kualifikasi_umpire.html", context)
+
+def riwayat_ujian_kualifikasi_umpire(request):
+    #GET RIWAYAT UJIAN KUALIFIKASI
+    riwayat_ujian_kualifikasi_umpire = execute("""
+    SELECT
+        nama,
+        tahun,
+        batch,
+        tempat,
+        tanggal,
+        Hasil_Lulus
+    FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id
+    """)
+
+    context = {
+        "riwayat_ujian_kualifikasi_umpire": riwayat_ujian_kualifikasi_umpire,
+    }
+
+    return render(request, "riwayat_ujian_kualifikasi_umpire.html", context)

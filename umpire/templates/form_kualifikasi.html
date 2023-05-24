@@ -16,29 +16,30 @@
         <div class="col-md-4 p-5 shadow-sm border rounded-5">
             <h1 class="custom-heading mb-3">Form Data Kualifikasi</h1>
 
-            <form>
-                <div class="mb-3">
-                    <label for="inputNoBatch" class="form-label">Nomor Batch</label>
-                    <input type="text" class="form-control border border-primary" id="inputNoBatch">
-                </div>
-                <div class="mb-3">
-                    <label for="inputNoBatch" class="form-label">Batch</label>
-                    <input type="text" class="form-control border border-primary" id="batch" name="batch" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputTempat" class="form-label">Tempat Pelaksanaan</label>
-                    <input type="text" class="form-control border border-primary" id="tempat" name="tempat" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputTanggal" class="form-label">Tanggal Pelaksanaan</label>
-                    <input type="date" class="form-control border border-primary" id="tanggal" name="tanggal" required>
-                </div>
-
-
-                <div class="d-grid mt-5">
-                    <button class="blue-button" type="submit"><a href="{% url 'atlet:tes_kualifikasi' %}">Next</a></button>
-                </div>
-            </form>
+            <form id="form-tes-kualifikasi" method="POST" action="{% url 'umpire:form_kualifikasi' %}">
+                {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNoBatch" class="form-label">Tahun</label>
+                        <input type="text" class="form-control border border-primary" id="tahun" name="tahun" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputNoBatch" class="form-label">Batch</label>
+                        <input type="text" class="form-control border border-primary" id="batch" name="batch" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTempat" class="form-label">Tempat Pelaksanaan</label>
+                        <input type="text" class="form-control border border-primary" id="tempat" name="tempat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTanggal" class="form-label">Tanggal Pelaksanaan</label>
+                        <input type="date" class="form-control border border-primary" id="tanggal" name="tanggal" required>
+                    </div>
+    
+    
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitFormUjian"><a href="{% url 'umpire:ujian_kualifikasi_umpire' %}">Buat</a></button>
+                    </div>
+                </form>
 
         </div>
     </div>

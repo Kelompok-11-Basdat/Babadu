@@ -26,11 +26,11 @@
                 <tbody class="table-group-divider align-middle">
                     {% for ujian_kualifikasi in ujian_kualifikasi %}
                     <tr>
-                      <td>{{ ujian_kualifikasi.tahun }}</td>
-                      <td>{{ ujian_kualifikasi.batch }}</td>
-                      <td>{{ ujian_kualifikasi.tempat }}</td>
-                      <td>{{ ujian_kualifikasi.tanggal }}</td>
-                      <td><button class="btn btn-primary" type="Ikuti"><a href="{% url 'atlet:tes_kualifikasi' %}">Ikuti</a></button></td>
+                      <td id="tahun-{{forloop.counter}}" >{{ ujian_kualifikasi.tahun }}</td>
+                      <td id="batch-{{forloop.counter}}" >{{ ujian_kualifikasi.batch }}</td>
+                      <td id="tempat-{{forloop.counter}}" >{{ ujian_kualifikasi.tempat }}</td>
+                      <td id="tanggal-{{forloop.counter}}" >{{ ujian_kualifikasi.tanggal }}</td>
+                      <td><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Ikuti</a></button></td>
                     </tr>
                    {% endfor %}
                 </tbody>
@@ -47,4 +47,42 @@
 
     }
 </style>
+
+<!-- jQuery -->
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+
+<script>
+    function sendData(counter){
+        // Retrieve data table
+       var tahun = $(`#tahun-${counter}`).text()
+       var batch = $(`#batch-${counter}`).text()
+       var tempat = $(`#tempat-${counter}`).text()
+       var tanggal = $(`#tanggal-${counter}`).text()
+
+       var tesUrl = '{% url "atlet:atlet_ikut_ujian" %}';
+       var indexUrl = '{% url "atlet:tes_kualifikasi" %}';
+
+        
+        $.ajax({
+            method: 'POST',
+            url: tesUrl,
+            data: {
+                tahun: tahun,
+                batch: batch,
+                tempat: tempat,
+                tanggal: tanggal
+            },
+            success: function(response) {
+                window.location.href = indexUrl;
+            },
+            error: function(response) {
+                alert("Lu udah pernah ikut ")
+            }
+        });
+    }
+</script>
 {% endblock content %}

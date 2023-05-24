@@ -8,8 +8,6 @@ def sql_get_pelatih_atlet(id):
     WHERE A.ID = '{id}';
     """
 
-
-
 def sql_get_status_kualifikasi(id):
     return f"""
     SELECT 
@@ -23,6 +21,25 @@ def sql_get_status_kualifikasi(id):
     LEFT JOIN ATLET_KUALIFIKASI K ON K.ID_Atlet = A.ID
     LEFT JOIN ATLET_NON_KUALIFIKASI N ON N.ID_Atlet = A.ID
     WHERE A.ID = '{id}';
+    """
+
+def update_status_kualifikasi_lulus(id):
+    return f"""
+    UPDATE atlet_nonkualifikasi_ujian_kualifikasi
+    SET Hasil_Lulus = true
+    WHERE ID_Atlet = '{id}';
+    """
+
+def sql_get_riwayat_ujian_kualifikasi_umpire():
+    return f"""
+    SELECT
+        nama,
+        tahun,
+        batch,
+        tempat,
+        tanggal,
+        Hasil_Lulus
+    FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id
     """
 
 def sql_get_total_point(id):
