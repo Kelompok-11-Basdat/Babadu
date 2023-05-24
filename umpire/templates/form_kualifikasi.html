@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- P<main>
+    <!-- Pills navs -->
+
+    <div class="d-flex my-5 mx-auto justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
+        <div class="col-md-4 p-5 shadow-sm border rounded-5">
+            <h1 class="custom-heading mb-3">Form Data Kualifikasi</h1>
+
+            <form id="form-tes-kualifikasi" method="POST" action="{% url 'umpire:form_kualifikasi' %}">
+                {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNoBatch" class="form-label">Tahun</label>
+                        <input type="text" class="form-control border border-primary" id="tahun" name="tahun" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputNoBatch" class="form-label">Batch</label>
+                        <input type="text" class="form-control border border-primary" id="batch" name="batch" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTempat" class="form-label">Tempat Pelaksanaan</label>
+                        <input type="text" class="form-control border border-primary" id="tempat" name="tempat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTanggal" class="form-label">Tanggal Pelaksanaan</label>
+                        <input type="date" class="form-control border border-primary" id="tanggal" name="tanggal" required>
+                    </div>
+    
+    
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitFormUjian"><a href="{% url 'umpire:ujian_kualifikasi_umpire' %}">Buat</a></button>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+
+    <!-- Pills content -->
+</main>
+
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color:white;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-label {
+    color:white;
+}
+</style>
+
+</style>
+
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<!-- </main> -->
+{% endblock content %}
