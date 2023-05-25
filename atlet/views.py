@@ -149,7 +149,7 @@ def daftar_event(request):
 def pilih_stadium(request, pk):
 
 
-    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai < CURRENT_DATE".format(pk)
+    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai > CURRENT_DATE".format(pk)
     events = execute(query_events)
     
     context = {
