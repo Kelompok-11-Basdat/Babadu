@@ -23,11 +23,12 @@ def latih_atlet(request, fail):
     return render(request, "c_latih_atlet.html", context)
 
 def show_atlet(request):
+
     atlet = execute(f"""
             SELECT ma.nama, ma.email, a.world_rank
             FROM MEMBER ma, MEMBER mp, PELATIH p, ATLET a, ATLET_PELATIH ap
             WHERE mp.id = p.id AND ma.id = a.id AND ap.id_pelatih = p.id
-            AND a.id = ap.id_atlet AND mp.nama = '';
+            AND a.id = ap.id_atlet AND mp.id= '{request.session['id']}';
             """)
 
     context = {
