@@ -44,52 +44,52 @@
         {% endif %}
 
         {% if request.session.is_pelatih %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Menu Pelatih
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-            <li><a class="dropdown-item" href="#">Daftar Atlet</a></li>
-            <li><a class="dropdown-item" href="#">List Atlet</a></li>
-          </ul>
-        </li>
-        {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu Pelatih
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/pelatih/">Dashboard</a></li>
+              <li><a class="dropdown-item" href="/pelatih/latih-atlet/">Daftar Atlet</a></li>
+              <li><a class="dropdown-item" href="/pelatih/show-atlet/">List Atlet</a></li>
+            </ul>
+          </li>
+          {% endif %}
 
-        {% if request.session.is_umpire %}
-        <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Atlet
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Daftar Atlet</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ujian Kualifikasi
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/umpire/form-kualifikasi/">Buat Ujian Kualifikasi</a></li>
-            <li><a class="dropdown-item" href="/umpire/ujian-kualifikasi-umpire/">List Ujian Kualifikasi</a></li>
-            <li><a class="dropdown-item" href="/umpire/riwayat-ujian-kualifikasi-umpire/">Riwayat Ujian Kualifikasi</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Event
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">List Partai Kompetisi</a></li>
-          </ul>
-        </li>
-        {% endif %}
+          {% if request.session.is_umpire %}
+          <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Atlet
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/umpire/daftar-atlet/">Daftar Atlet</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Ujian Kualifikasi
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/umpire/form-kualifikasi/">Buat Ujian Kualifikasi</a></li>
+              <li><a class="dropdown-item" href="/umpire/ujian-kualifikasi-umpire/">List Ujian Kualifikasi</a></li>
+              <li><a class="dropdown-item" href="/umpire/riwayat-ujian-kualifikasi-umpire/">Riwayat Ujian Kualifikasi</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Event
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/umpire/list-event/">List Partai Kompetisi</a></li>
+            </ul>
+          </li>
+          {% endif %}
 
-        <li class="btn-dark">
-          <a class="nav-link" href="{% url 'authentication:logout' %}">Logout</a>
-        </li>
+          <li class="btn-dark">
+            <a class="nav-link" href="{% url 'authentication:logout' %}">Logout</a>
+          </li>
 
-      </div>
-  </div>
-</nav>
+        </div>
+    </div>
+  </nav>
