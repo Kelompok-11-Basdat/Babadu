@@ -152,7 +152,6 @@ def pilih_partai(request, pk):
         JOIN stadium s ON s.nama = event.nama_stadium
         WHERE Nama_Event = '{pk}';
     """)
-    print(event)
     context = {
         'event': event,
     }
