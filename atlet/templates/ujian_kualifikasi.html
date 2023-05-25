@@ -10,13 +10,13 @@
 
 <main>
     <!-- Pills navs -->
-    <div class="my-5 d-flex justify-content-center align-items-center">
-        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
-            <h1 class="text-center mb-4 text-primary">List Ujian Kualifikasi</h1>
+    <div class="my-5 d-flex justify-content-center align-items-center"  style="background-color: #889eb4; height: 100vh;">
+        <div class="container-xl p-5 shadow-sm border rounded-5 grad">
+            <h1 class="text-center mb-4 custom-heading">List Ujian Kualifikasi</h1>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Tahun</th>
+                        <th scope="col" id="judul">Tahun</th>
                         <th scope="col">Batch</th>
                         <th scope="col">Tempat Pelaksanaan</th>
                         <th scope="col">Tanggal Pelaksanaan</th>
@@ -46,6 +46,16 @@
         --bs-table-striped-bg: #f2f9f8;
 
     }
+    .th {
+        color:white;
+    }
+
+    .custom-heading {
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    }
+
 </style>
 
 <!-- jQuery -->
