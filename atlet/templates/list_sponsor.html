@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- Pills navs -->
+    <div class="my-5 d-flex justify-content-center align-items-center">
+        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
+            <h1 class="text-center mb-4 text-primary">List Sponsor</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Sponsor</th>
+                        <th scope="col">Tanggal Mulai</th>
+                        <th scope="col">Tanggal Selesai</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider align-middle">
+                    {% for list_sponsor in list_sponsor %}
+                    <tr>
+                      <td id="nama-{{forloop.counter}}" >{{ list_sponsor.nama_brand }}</td>
+                      <td id="tanggalm-{{forloop.counter}}" >{{ list_sponsor.tgl_mulai }}</td>
+                      <td id="tanggals-{{forloop.counter}}" >{{ list_sponsor.tgl_selesai }}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</main>
+
+<style>
+    .table {
+        --bs-table-striped-bg: #f2f9f8;
+
+    }
+</style>
+
+<!-- jQuery -->
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+{% endblock content %}
