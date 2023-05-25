@@ -10,6 +10,8 @@ from util.query import *
 from atlet.query import *
 from Babadu.helper.function import *
 
+def homepage(request):
+    return render(request, "onboarding.html")
 
 # Create your views here.
 @csrf_exempt
@@ -187,3 +189,108 @@ def register_umpire(nama, email, negara):
         return {
             'success': True,
         }
+    
+def fetch(cursor):
+    columns = [col[0] for col in cursor.description]
+    result = []
+    for row in cursor.fetchall():
+        row_dict = {}
+        for i, col in enumerate(columns):
+            row_dict[col] = row[i]
+        result.append(row_dict)
+    return result
+
+def is_logged(request):
+    return 'email' in request.session
+
+SESSION_ROLE_KEYS = {
+    'atlet': 'is_atlet',
+    'pelatih': 'is_pelatih',
+    'umpire': 'is_umpire',
+}
+
+# login
+@csrf_exempt
+def login(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        query = f"""
+            SELECT
+            M.ID,
+            M.Nama,
+            M.Email,
+            COALESCE(U.ID, P.ID, A.ID) AS ID_Member,
+            CASE
+                WHEN A.ID IS NOT NULL THEN 'atlet'
+                WHEN P.ID IS NOT NULL THEN 'pelatih'
+                WHEN U.ID IS NOT NULL THEN 'umpire'
+                ELSE 'none'
+            END AS role,
+            P.Tanggal_Mulai,
+            A.Tgl_Lahir,
+            A.Negara_Asal,
+            A.Play_Right,
+            A.Height,
+            A.World_Rank,
+            U.Negara,
+            A.Jenis_Kelamin
+        FROM
+            MEMBER AS M
+            LEFT JOIN UMPIRE AS U ON M.ID = U.ID
+            LEFT JOIN ATLET AS A ON M.ID = A.ID
+            LEFT JOIN PELATIH AS P ON M.ID = P.ID
+        WHERE
+            M.Nama = '{name}' and M.email = '{email}';
+        """
+
+        cursor = connection.cursor()
+        cursor.execute("set search_path to babadu;")
+        cursor.execute(query)
+        data = fetch(cursor)
+        request.session['is_atlet'] = False
+        request.session['is_pelatih'] = False
+        request.session['is_umpire'] = False
+        if len(data) == 1:
+            temp = data[0]
+            for attr in temp:
+                if isinstance(temp[attr], uuid.UUID):
+                    request.session[attr] = str(temp[attr])
+                elif isinstance(temp[attr], datetime.date):
+                    date = datetime.datetime.strptime(str(temp[attr]), '%Y-%m-%d')
+                    formatted_date = date.strftime('%d %B %Y')
+                    request.session[attr] = formatted_date
+                else:
+                    request.session[attr] = temp[attr]
+            request.session[SESSION_ROLE_KEYS[temp['role']]] = True
+
+            print("after login")
+            print(request.session['is_atlet'])
+            print(request.session['is_pelatih'])
+            print(request.session['is_umpire'])
+            return redirect('pink:r_daftar_atlet') # sementara ini pake ini karena blm ada dashboard
+        else:
+            messages.info(request,'Nama atau Email salah')
+
+    if request.method == 'GET':
+        return render(request, 'login.html')
+
+
+def logout(request):
+    if "id" in request.session:
+        print("before logout")
+        print(request.session['is_atlet'])
+        print(request.session['is_pelatih'])
+        print(request.session['is_umpire'])
+
+        request.session.clear()
+        request.session['is_atlet'] = False
+        request.session['is_pelatih'] = False
+        request.session['is_umpire'] = False
+
+        print("after logout")
+        print(request.session['is_atlet'])
+        print(request.session['is_pelatih'])
+        print(request.session['is_umpire'])
+        return redirect('/')
+    return redirect('/')
