@@ -9,4 +9,5 @@ urlpatterns = [
     path('daftar-atlet/', show_daftar_atlet, name='show_daftar_atlet'),
     path('ujian-kualifikasi-umpire/', ujian_kualifikasi_umpire, name='ujian_kualifikasi_umpire' ),
     path('riwayat-ujian-kualifikasi-umpire/', riwayat_ujian_kualifikasi_umpire, name='riwayat_ujian_kualifikasi_umpire' ),
+    path('list-event/', list_event, name='list_event' ),
 ]

@@ -10,25 +10,25 @@
 
 <main>
     <!-- Pills navs -->
-    <div class="my-5 d-flex justify-content-center align-items-center"  >
-        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
+    <div class="my-5 d-flex justify-content-center align-items-center"  style="background-color: #889eb4; height: 100vh;">
+        <div class="container-xl p-5 shadow-sm border rounded-5 grad">
             <h1 class="text-center mb-4 custom-heading">List Ujian Kualifikasi</h1>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Tahun</th>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Tempat Pelaksanaan</th>
-                        <th scope="col">Tanggal Pelaksanaan</th>
+                        <th scope="col" class="form-label">Tahun</th>
+                        <th scope="col" class="form-label">Batch</th>
+                        <th scope="col" class="form-label">Tempat Pelaksanaan</th>
+                        <th scope="col" class="form-label">Tanggal Pelaksanaan</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider align-middle">
                     {% for ujian_kualifikasi in ujian_kualifikasi %}
                     <tr>
-                      <td>{{ ujian_kualifikasi.tahun }}</td>
-                      <td>{{ ujian_kualifikasi.batch }}</td>
-                      <td>{{ ujian_kualifikasi.tempat }}</td>
-                      <td>{{ ujian_kualifikasi.tanggal }}</td>
+                      <td class="form-label">{{ ujian_kualifikasi.tahun }}</td>
+                      <td class="form-label">{{ ujian_kualifikasi.batch }}</td>
+                      <td class="form-label">{{ ujian_kualifikasi.tempat }}</td>
+                      <td class="form-label">{{ ujian_kualifikasi.tanggal }}</td>
                     </tr>
                    {% endfor %}
                 </tbody>
@@ -43,11 +43,15 @@
 .custom-heading {
   font-size: 30px;
   text-align: center;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 .table {
 --bs-table-striped-bg: #f2f9f8;
 
+}
+
+.form-label {
+    color:white;
 }
 </style>
 {% endblock content %}
