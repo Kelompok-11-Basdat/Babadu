@@ -122,10 +122,41 @@ def sql_get_status_kualifikasi(id):
     """
 
 def daftar_event(request):
-    return render(request, "daftar_event.html")
+    stadium = execute("""
+                        SELECT Nama, Alamat, Kapasitas, Negara
+                        FROM STADIUM;
+                        """)
+    context = {
+        "stadiums": stadium,
+    }
 
-def pilih_event(request, stadium):
-    return render(request, "pilih_event.html")
+    return render(request, "daftar_event.html", context)
+
+def pilih_stadium(request, pk):
+    # query_stadium = "SELECT Nama, Alamat, Kapasitas, Negara FROM STADIUM WHERE Nama = '{}' LIMIT 1".format(pk)
+    # stadium = execute(query_stadium)
+    # print(stadium)
+
+    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai < CURRENT_DATE".format(pk)
+    events = execute(query_events)
+    
+    context = {
+        'events': events
+    }
+    return render(request, "pilih_event.html", context)
+
+def pilih_partai(request, pk):
+    event = execute(f"""
+        SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Tgl_Selesai, Kategori_superseries, Nama_Stadium, event.Negara, s.kapasitas
+        FROM EVENT
+        JOIN stadium s ON s.nama = event.nama_stadium
+        WHERE Nama_Event = '{pk}';
+    """)
+    print(event)
+    context = {
+        'event': event,
+    }
+    return render(request,"pilih_partai.html", context)
 
 def pilih_kategori(request, stadium, event):
     return render(request, "pilih_kategori.html")
