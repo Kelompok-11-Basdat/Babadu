@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Partai Kompetisi</title>
+{% endblock meta %}
+
+{% block content %}
+
+<style>
+    body {
+      background-color: #2C3E50;
+      color: #FFF;
+      margin: 0;
+      padding: 0;
+    }
+    table {
+        background-color: #FFF;
+    }
+</style>
+
+<main class="mx-auto mt-[15vh] mb-[8vh] min-h-[calc(60vh-4rem)] max-w-[160vh]">
+
+    <h1 class="text-2xl font-bold text-center mb-12">List Partai Kompetisi</h2>
+
+    <div class="col-lg-6 col-md-4 col-sm-4 container justify-content-center">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nama Event</th>
+                <th scope="col">Tahun</th>
+                <th scope="col">Stadium</th>
+                <th scope="col">Jenis Partai</th>
+                <th scope="col">Kategori Superseries</th>
+                <th scope="col">Tanggal Mulai</th>
+                <th scope="col">Tanggal Selesai</th>
+                <th scope="col">Terisi</th>
+                <th scope="col">Kapasitas</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.nama_event }}</td>
+                <td>{{ event.tahun }}</td>
+                <td>{{ event.nama_stadium }}</td>
+                <td>{{ event.jenis_partai }}</td>
+                <td>{{ event.kategori_superseries }}</td>
+                <td>{{ event.tgl_mulai }}</td>
+                <td>{{ event.tgl_selesai }}</td>
+                <td>{{ event.jumlah_peserta }}</td>
+                <td>{{ event.kapasitas }}</td>
+                {% if event.jumlah_peserta >= event.kapasitas %} <td><button type="button" class="btn btn-primary">Mulai</button></td> {% else %} <td></td> {% endif%}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</main>
+{% endblock content %}
