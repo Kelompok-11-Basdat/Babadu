@@ -50,7 +50,11 @@
                 <td>{{ event.tgl_selesai }}</td>
                 <td>{{ event.jumlah_peserta }}</td>
                 <td>{{ event.kapasitas }}</td>
-                {% if event.jumlah_peserta >= event.kapasitas %} <td><button type="button" class="btn btn-primary">Mulai</button></td> {% else %} <td></td> {% endif%}
+                {% if event.jumlah_peserta >= event.kapasitas %} 
+                    <td><button type="button" class="btn btn-primary">Mulai</button></td> 
+                    <button type="button" class="btn btn-primary"><a href="/umpire/hasil-pertandingan?nama_event={{ event.nama_event|urlencode }}&jenis_partai={{ event.jenis_partai|urlencode }}&tahun={{ event.tahun|urlencode }}">
+                        Hasil Pertandingan</a></button>
+                {% else %} <td></td> {% endif%}
             </tr>
             {% endfor %}
         </tbody>
