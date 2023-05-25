@@ -1,95 +1,95 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: white; z-index: 1;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Babadu</a>
-        <div class="navbar-nav">
-          <!-- <a class="nav-link" href="#">Dashboard</a>
-          <a class="nav-link" href="#">Tes Kualifikasi</a>
-          <a class="nav-link" href="#">Daftar Event</a>
-          <a class="nav-link" href="#">Enrolled Event</a>
-          <a class="nav-link" href="#">Daftar Event</a>
-          <a class="nav-link" href="#">Daftar Event</a>
-          <a class="nav-link" href="#">Daftar Event</a> -->
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Babadu</a>
+      <div class="navbar-nav">
+        <!-- <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="#">Tes Kualifikasi</a>
+        <a class="nav-link" href="#">Daftar Event</a>
+        <a class="nav-link" href="#">Enrolled Event</a>
+        <a class="nav-link" href="#">Daftar Event</a>
+        <a class="nav-link" href="#">Daftar Event</a>
+        <a class="nav-link" href="#">Daftar Event</a> -->
 
-          {% if request.session.is_atlet %}
-          <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ujian Kualifikasi
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/atlet/ujian-kualifikasi/">List Ujian Kualifikasi</a></li>
-              <li><a class="dropdown-item" href="/atlet/riwayat-ujian-kualifikasi/">Riwayat Ujian Kualifikasi</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Event
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/atlet/daftar-event/">Daftar Event</a></li>
-              <li><a class="dropdown-item" href="{% url 'atlet:ujian_kualifikasi' %}">Enrolled Event</a></li>
-              <li><a class="dropdown-item" href="{% url 'atlet:enrolled_partai_kompetisi_event' %}">Enrolled Partai Kompetisi Event</a></li>
-              <li><a class="dropdown-item" href="{% url 'atlet:enrolled_event' %}">Enrolled Event</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Sponsor
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'atlet:daftar_sponsor' %}">Daftar Sponsor</a></li>
-              <li><a class="dropdown-item" href="{% url 'atlet:list_sponsor' %}">List Sponsor</a></li>
-            </ul>
-          </li>
-          {% endif %}
+        {% if request.session.is_atlet %}
+        <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ujian Kualifikasi
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/atlet/ujian-kualifikasi/">List Ujian Kualifikasi</a></li>
+            <li><a class="dropdown-item" href="/atlet/riwayat-ujian-kualifikasi/">Riwayat Ujian Kualifikasi</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Event
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/atlet/daftar-event/">Daftar Event</a></li>
+            <li><a class="dropdown-item" href="{% url 'atlet:ujian_kualifikasi' %}">Enrolled Event</a></li>
+            <li><a class="dropdown-item" href="{% url 'atlet:enrolled_partai_kompetisi_event' %}">Enrolled Partai Kompetisi Event</a></li>
+            <li><a class="dropdown-item" href="{% url 'atlet:enrolled_event' %}">Enrolled Event</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sponsor
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'atlet:daftar_sponsor' %}">Daftar Sponsor</a></li>
+            <li><a class="dropdown-item" href="{% url 'atlet:list_sponsor' %}">List Sponsor</a></li>
+          </ul>
+        </li>
+        {% endif %}
 
-          {% if request.session.is_pelatih %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Menu Pelatih
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pelatih/">Dashboard</a></li>
-              <li><a class="dropdown-item" href="/pelatih/latih-atlet/">Daftar Atlet</a></li>
-              <li><a class="dropdown-item" href="/pelatih/show-atlet/">List Atlet</a></li>
-            </ul>
-          </li>
-          {% endif %}
+        {% if request.session.is_pelatih %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu Pelatih
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+            <li><a class="dropdown-item" href="#">Daftar Atlet</a></li>
+            <li><a class="dropdown-item" href="#">List Atlet</a></li>
+          </ul>
+        </li>
+        {% endif %}
 
-          {% if request.session.is_umpire %}
-          <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Atlet
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/umpire/daftar-atlet/">Daftar Atlet</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ujian Kualifikasi
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/umpire/form-kualifikasi/">Buat Ujian Kualifikasi</a></li>
-              <li><a class="dropdown-item" href="/umpire/ujian-kualifikasi-umpire/">List Ujian Kualifikasi</a></li>
-              <li><a class="dropdown-item" href="/umpire/riwayat-ujian-kualifikasi-umpire/">Riwayat Ujian Kualifikasi</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Event
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/umpire/list-event/">List Partai Kompetisi</a></li>
-            </ul>
-          </li>
-          {% endif %}
+        {% if request.session.is_umpire %}
+        <a class="navbar-brand" href="/dashboard_atlet">Dashboard</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Atlet
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Daftar Atlet</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ujian Kualifikasi
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/umpire/form-kualifikasi/">Buat Ujian Kualifikasi</a></li>
+            <li><a class="dropdown-item" href="/umpire/ujian-kualifikasi-umpire/">List Ujian Kualifikasi</a></li>
+            <li><a class="dropdown-item" href="/umpire/riwayat-ujian-kualifikasi-umpire/">Riwayat Ujian Kualifikasi</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Event
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">List Partai Kompetisi</a></li>
+          </ul>
+        </li>
+        {% endif %}
 
-          <li class="btn-dark">
-            <a class="nav-link" href="{% url 'authentication:logout' %}">Logout</a>
-          </li>
+        <li class="btn-dark">
+          <a class="nav-link" href="{% url 'authentication:logout' %}">Logout</a>
+        </li>
 
-        </div>
-    </div>
-  </nav>
+      </div>
+  </div>
+</nav>
