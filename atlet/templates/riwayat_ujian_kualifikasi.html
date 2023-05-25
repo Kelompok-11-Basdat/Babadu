@@ -16,21 +16,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Tahun</th>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Tempat Pelaksanaan</th>
-                        <th scope="col">Tanggal Pelaksanaan</th>
-                        <th scope="col">Hasil</th>
+                        <th scope="col" class="form-label">Tahun</th>
+                        <th scope="col" class="form-label">Batch</th>
+                        <th scope="col" class="form-label">Tempat Pelaksanaan</th>
+                        <th scope="col" class="form-label">Tanggal Pelaksanaan</th>
+                        <th scope="col" class="form-label">Hasil</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider align-middle">
                     {% for riwayat_ujian_kualifikasi in riwayat_ujian_kualifikasi %}
                     <tr>
-                      <td>{{ riwayat_ujian_kualifikasi.tahun }}</td>
-                      <td>{{ riwayat_ujian_kualifikasi.batch }}</td>
-                      <td>{{ riwayat_ujian_kualifikasi.tempat }}</td>
-                      <td>{{ riwayat_ujian_kualifikasi.tanggal }}</td>
-                      <td>
+                      <td class="form-label">{{ riwayat_ujian_kualifikasi.tahun }}</td>
+                      <td class="form-label">{{ riwayat_ujian_kualifikasi.batch }}</td>
+                      <td class="form-label">{{ riwayat_ujian_kualifikasi.tempat }}</td>
+                      <td class="form-label">{{ riwayat_ujian_kualifikasi.tanggal }}</td>
+                      <td class="form-label">
                         {% if riwayat_ujian_kualifikasi.hasil_lulus == True %}
                         Lulus
                         {% else %}
@@ -54,9 +54,18 @@
     }
 
     .custom-heading {
-    font-size: 30px;
-    text-align: center;
-    color: black;
-    }
+  font-size: 30px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+.table {
+--bs-table-striped-bg: #f2f9f8;
+
+}
+
+.form-label {
+    color:white;
+}
+
 </style>
 {% endblock content %}
