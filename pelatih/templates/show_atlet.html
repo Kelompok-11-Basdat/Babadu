@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Daftar Atlet</title>
+{% endblock meta %}
+
+{% block content %}
+
+<style>
+    body {
+      background-color: #2C3E50;
+      color: #FFF;
+      margin: 0;
+      padding: 0;
+    }
+    table {
+        background-color: #FFF;
+    }
+</style>
+
+<main class="mx-auto mt-[15vh] mb-[8vh] min-h-[calc(60vh-4rem)] max-w-[160vh]">
+
+    <h1 class="text-2xl font-bold text-center mb-12">Atlet Dilatih</h2>
+
+    <div class="col-lg-6 col-md-4 col-sm-4 container justify-content-center">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nama Atlet</th>
+                <th scope="col">Email</th>
+                <th scope="col">World rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atlet in atlet %}
+            <tr>
+                <td>{{ atlet.nama }}</td>
+                <td>{{ atlet.email }}</td>
+                <td>{{ atlet.world_rank }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</main>
+{% endblock content %}
