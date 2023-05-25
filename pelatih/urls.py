@@ -1,5 +1,5 @@
 from django.urls import path
-from dashboard_pelatih.views import *
+from pelatih.views import *
 
 app_name = 'pelatih'
 
