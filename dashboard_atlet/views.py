@@ -38,7 +38,7 @@ FROM
   LEFT JOIN ATLET_KUALIFIKASI AK ON A.ID = AK.ID_Atlet
   LEFT JOIN POINT_HISTORY PH ON A.ID = PH.ID_Atlet
 WHERE
-  M.ID = '1509b2a8-422a-4cde-bf1b-f289c267d494'
+  M.ID = '{request.session['id']}'
 GROUP BY
   M.Nama,
   A.Negara_Asal,
