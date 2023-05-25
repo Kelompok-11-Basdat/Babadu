@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from umpire.query import *
 
+def show_dashboard_umpire(request):
+    return render(request, "dashboard_umpire.html")
+
 def show_daftar_atlet(request):
     atlet_kualifikasi = execute("""
                         SELECT DISTINCT m.nama, a.tgl_lahir, a.negara_asal, a.play_right, a.height, ak.world_rank, ak.world_tour_rank, a.jenis_kelamin, p.total_point
