@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'umpire',
     'dashboard_atlet',
     'pertandingan',
-    'authentication'
+    'authentication',
+    'pelatih',
 ]
 
 MIDDLEWARE = [

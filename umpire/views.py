@@ -5,6 +5,18 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from umpire.query import *
 
+def show_dashboard_umpire(request):
+    nama = execute(f"""SELECT m.nama FROM MEMBER m, UMPIRE u WHERE m.id=u.id AND u.id='{request.session['id']}'""")
+    email = execute(f"""SELECT m.email FROM MEMBER m, UMPIRE u WHERE m.id=u.id AND u.id='{request.session['id']}'""")
+    negara = execute(f"""SELECT u.negara FROM UMPIRE u WHERE u.id='{request.session['id']}'""")
+    
+    context = {
+        "nama": nama,
+        "email": email,
+        "negara": negara
+    }
+    return render(request, "dashboard_umpire.html", context)
+
 def show_daftar_atlet(request):
     atlet_kualifikasi = execute("""
                         SELECT DISTINCT m.nama, a.tgl_lahir, a.negara_asal, a.play_right, a.height, ak.world_rank, ak.world_tour_rank, a.jenis_kelamin, p.total_point
