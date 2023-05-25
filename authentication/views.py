@@ -91,9 +91,6 @@ def register_atlet(nama, email, negara_asal, tgl_lahir, play_right, height, jeni
                 {jenis_kelamin}
             );
         """)
-
-        # query_atlet = sql_insert_atlet(id, tgl_lahir, negara_asal, play_right, height, jenis_kelamin)
-        # cursor.execute(query_atlet)
     except InternalError as e:
         return {
             'success': False,
@@ -268,7 +265,7 @@ def login(request):
             print(request.session['is_pelatih'])
             print(request.session['is_umpire'])
 
-            return redirect('pink:r_daftar_atlet') # sementara ini pake ini karena blm ada dashboard
+            return redirect('atlet:riwayat_ujian_kualifikasi') # sementara ini pake ini karena blm ada dashboard
         else:
             messages.info(request,'Nama atau Email salah')
 
@@ -292,5 +289,5 @@ def logout(request):
         print(request.session['is_atlet'])
         print(request.session['is_pelatih'])
         print(request.session['is_umpire'])
-        return redirect('/')
-    return redirect('/')
+        return redirect('authentication:login')
+    return redirect('')

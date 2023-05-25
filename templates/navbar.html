@@ -15,7 +15,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Dashboard</a></li>
-              <li><a class="dropdown-item" href="#">Test Kualifikasi</a></li>
+              <li><a class="dropdown-item" href="{% url 'atlet:ujian_kualifikasi' %}">Test Kualifikasi</a></li>
               <li><a class="dropdown-item" href="#">Daftar Event</a></li>
               <li><a class="dropdown-item" href="#">Enrolled Event</a></li>
               <li><a class="dropdown-item" href="#">Daftar Event</a></li>
@@ -46,7 +46,7 @@
           </li>
 
           <li class="btn-dark">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="{% url 'authentication:logout' %}">Logout</a>
           </li>
 
         </div>
