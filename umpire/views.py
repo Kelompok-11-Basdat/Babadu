@@ -6,7 +6,16 @@ from django.views.decorators.csrf import csrf_exempt
 from umpire.query import *
 
 def show_dashboard_umpire(request):
-    return render(request, "dashboard_umpire.html")
+    nama = execute(f"""SELECT m.nama FROM MEMBER m, UMPIRE u WHERE m.id=u.id AND u.id='{request.session['id']}'""")
+    email = execute(f"""SELECT m.email FROM MEMBER m, UMPIRE u WHERE m.id=u.id AND u.id='{request.session['id']}'""")
+    negara = execute(f"""SELECT u.negara FROM UMPIRE u WHERE u.id='{request.session['id']}'""")
+    
+    context = {
+        "nama": nama,
+        "email": email,
+        "negara": negara
+    }
+    return render(request, "dashboard_umpire.html", context)
 
 def show_daftar_atlet(request):
     atlet_kualifikasi = execute("""
