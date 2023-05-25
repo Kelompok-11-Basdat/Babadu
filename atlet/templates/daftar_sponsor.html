@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- Pills navs -->
+    <div class="my-5 d-flex justify-content-center align-items-center">
+        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
+            <h1 class="text-center mb-4 text-primary">Enrolled Partai Kompetisi Event</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Event</th>
+                        <th scope="col">Tahun</th>
+                        <th scope="col">Stadium</th>
+                        <th scope="col">Jenis Partai</th>
+                        <th scope="col">Kategori Superseries</th>
+                        <th scope="col">Tanggal Mulai</th>
+                        <th scope="col">Tanggal Selesai</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider align-middle">
+                    {% for enrolled_partai_kompetisi_event in enrolled_partai_kompetisi_event %}
+                    <tr>
+                      <td id="nama-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.nama_event }}</td>
+                      <td id="tahun-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.tahun }}</td>
+                      <td id="stadium-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.nama_stadium }}</td>
+                      <td id="jenis-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.jenis_partai }}</td>
+                      <td id="kategori-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.kategori_superseries }}</td>
+                      <td id="tanggalm-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.tgl_mulai }}</td>
+                      <td id="tanggals-{{forloop.counter}}" >{{ enrolled_partai_kompetisi_event.tgl_selesai }}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</main>
+
+<style>
+    .table {
+        --bs-table-striped-bg: #f2f9f8;
+
+    }
+</style>
+
+<!-- jQuery -->
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+{% endblock content %}

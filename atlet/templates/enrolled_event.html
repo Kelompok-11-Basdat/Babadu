@@ -1,0 +1,91 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- Pills navs -->
+    <div class="my-5 d-flex justify-content-center align-items-center">
+        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
+            <h1 class="text-center mb-4 text-primary">Enrolled Event</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Event</th>
+                        <th scope="col">Tahun</th>
+                        <th scope="col">Stadium</th>
+                        <th scope="col">Kategori Superseries</th>
+                        <th scope="col">Tanggal Mulai</th>
+                        <th scope="col">Tanggal Selesai</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider align-middle">
+                    {% for enrolled_event in enrolled_event %}
+                    <tr>
+                      <td id="nama-{{forloop.counter}}" >{{ enrolled_event.nama_event }}</td>
+                      <td id="tahun-{{forloop.counter}}" >{{ enrolled_event.tahun }}</td>
+                      <td id="stadium-{{forloop.counter}}" >{{ enrolled_event.nama_stadium }}</td>
+                      <td id="kategori-{{forloop.counter}}" >{{ enrolled_event.kategori_superseries }}</td>
+                      <td id="tanggalm-{{forloop.counter}}" >{{ enrolled_event.tgl_mulai }}</td>
+                      <td id="tanggals-{{forloop.counter}}" >{{ enrolled_event.tgl_selesai }}</td>
+                      <td><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Unenroll</a></button></td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</main>
+
+<style>
+    .table {
+        --bs-table-striped-bg: #f2f9f8;
+    }
+</style>
+
+<!-- jQuery -->
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+
+<script>
+    function sendData(counter){
+        // Retrieve data table
+       var tahun = $(`#tahun-${counter}`).text()
+       var batch = $(`#batch-${counter}`).text()
+       var tempat = $(`#tempat-${counter}`).text()
+       var tanggal = $(`#tanggal-${counter}`).text()
+
+       var tesUrl = '{% url "atlet:atlet_ikut_ujian" %}';
+       var indexUrl = '{% url "atlet:tes_kualifikasi" %}';
+
+        
+        $.ajax({
+            method: 'POST',
+            url: tesUrl,
+            data: {
+                tahun: tahun,
+                batch: batch,
+                tempat: tempat,
+                tanggal: tanggal
+            },
+            success: function(response) {
+                window.location.href = indexUrl;
+            },
+            error: function(response) {
+                alert("Anda sudah pernah mengikuti Ujian Kualifikasi ini dan anda tidak dapat mengikutinya lagi!")
+            }
+        });
+    }
+</script>
+{% endblock content %}
