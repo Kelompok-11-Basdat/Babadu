@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'umpire',
     'dashboard_atlet',
     'pertandingan',
+    'register'
 ]
 
 MIDDLEWARE = [
