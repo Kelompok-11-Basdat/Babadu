@@ -15,9 +15,12 @@ def show_dashboard_pelatih(request):
     }
     return render(request, "dashboard_pelatih.html", context)
 
-def latih_atlet(request):
-  
-    return render(request, "form_latih_atlet.html")
+def latih_atlet(request, fail):
+    daftar_atlet = query("SELECT m.Nama FROM MEMBER m, ATLET a WHERE m.id = a.id;")
+    context = {
+        "list_atlet": list_atlet,
+    }
+    return render(request, "c_latih_atlet.html", context)
 
 def show_atlet(request):
     atlet = execute(f"""

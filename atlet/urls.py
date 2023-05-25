@@ -15,5 +15,6 @@ urlpatterns = [
     path('enrolled-partai-kompetisi-event/', get_enrolled_partai_kompetisi_event, name='enrolled_partai_kompetisi_event' ),
     path('enrolled-event/', enrolled_event, name='enrolled_event' ),
     path('daftar-sponsor/', daftar_sponsor, name='daftar_sponsor' ),
+    path('daftar-sponsor/add', daftar_sponsor, name='daftar_sponsor_add' ),
     path('list-sponsor/', list_sponsor, name='list_sponsor' ),
 ]

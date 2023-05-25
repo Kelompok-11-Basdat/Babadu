@@ -230,15 +230,19 @@ def enrolled_event(request):
     }
     return render(request,"enrolled_event.html", context)
 
+@csrf_exempt
 def daftar_sponsor(request):
-    daftar_sponsor = execute(f"""
-        SELECT Nama_Event, Tahun, Nama_Stadium, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
-        FROM EVENT;
-    """)
-    context = {
-        'daftar_sponsor': daftar_sponsor,
-    }
-    return render(request,"daftar_sponsor.html", context)
+    if request.method == 'POST':
+        if 'submitFormUjian' in request.POST:
+            nama = request.POST.get('nama')
+            tanggalmulai = request.POST.get('tanggalmulai')
+            tanggalselesai = request.POST.get('tanggalselesai')
+            data = buat_sponsor(nama, tanggalmulai, tanggalselesai, request)
+            if data['success']:
+                return redirect('atlet:list_sponsor')
+            else:
+                messages.info(request,data['msg'])
+    return render(request, "daftar_sponsor.html")
 
 def list_sponsor(request):
     print(request.session['id'])
@@ -253,3 +257,40 @@ def list_sponsor(request):
     }
     return render(request,"list_sponsor.html", context)
 
+def buat_sponsor(nama, tanggalmulai, tanggalselesai, request):
+    try:
+        executeUPDATE(f"""
+        INSERT INTO 
+            ATLET_SPONSOR(ID_Atlet, ID_Sponsor, Tgl_Mulai, Tgl_Selesai)
+        VALUES
+        (
+            (SELECT DISCTINCT ID FROM SPONSOR WHERE Nama_Brand = '{nama}'),
+            '{request.session['id']}',
+            '{tanggalmulai}',
+            '{tanggalselesai}'
+        );
+        """)
+    except InternalError as e:
+        return {
+            'success': False,
+            'msg': str(e.args)
+        }
+    else:
+        return {
+            'success': True,
+        }
+
+def dropdown(request):
+    sponsor = execute(f"""
+        SELECT DISTINCT s.Nama_Brand
+        FROM SPONSOR s
+        WHERE s.ID NOT IN (
+        SELECT ID_SPONSOR
+        FROM ATLET_SPONSOR
+        WHERE ID_ATLET = '{request.session['id']}'
+        );
+    """)
+    context = {
+        'sponsor': sponsor,
+    }
+    return render(request,"daftar_sponsor.html", context)

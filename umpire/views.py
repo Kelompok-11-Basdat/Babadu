@@ -156,3 +156,45 @@ def list_event(request):
     }
 
     return render(request, "partai_kompetisi_event.html", context)
+
+
+
+
+def hasil_pertandingan(request):
+
+    nama_event = request.GET.get("nama_event")
+
+    tahun = request.GET.get("tahun")
+
+    jenis_partai = request.GET.get("jenis_partai")
+
+
+
+
+    event = query(f"""SELECT pk.Jenis_partai, e.Nama_event, e.Nama_stadium, e.total_hadiah, e.Kategori_Superseries, e.Tgl_mulai, e.Tgl_selesai, s.Kapasitas
+
+                        FROM EVENT e, STADIUM s, PARTAI_KOMPETISI pk
+
+                        WHERE e.Nama_event = pk.Nama_event AND e.Nama_stadium = s.Nama AND e.Tahun = pk.Tahun_event 
+
+                        AND pk.Nama_event='{nama_event}'
+
+                        AND pk.Jenis_partai='{jenis_partai}'
+
+                        AND pk.Tahun_event='{tahun}';
+
+                        """)[0]
+
+
+
+
+    context = {
+
+        "event": event
+
+    }
+
+
+
+
+    return render(request, "hasil_pertandingan.html", context)
