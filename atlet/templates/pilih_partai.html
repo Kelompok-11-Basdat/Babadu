@@ -9,7 +9,7 @@
 <main>
   <div class="d-flex my-5 justify-content-center align-items-center" style="background-color: #2C3E50; height: 100vh;">
     <div class="container-sm mx-5 p-5 shadow-sm">
-      <h1 class="mb-5 custom-heading">PILIH KATEGORI</h1>
+      <h1 class="mb-5 custom-heading">FORM PEMILIHAN PARTAI KOMPETISI</h1>
 
       <div class="container">
         <div class="row">
@@ -17,36 +17,36 @@
             <tbody class="table-group-divider bg-white">
               <tr>
                 <th scope="col">Event</th>
-                <td>Event A</td>
+                <td>{{ event.Nama_Event }}</td>
               </tr>
               <tr>
                 <th scope="col">Hadiah</th>
-                <td>Rp 5.000.000</td>
+                <td>{{ event.Total_Hadiah }}</td>
 
               </tr>
               <tr>
                 <th scope="col">Tanggal Mulai</th>
-                <td>12-04-2023</td>
+                <td>{{ event.Tgl_Mulai }}</td>
               </tr>
               <tr>
                 <th scope="col">Tanggal Selesai</th>
-                <td>15-04-2023</td>
+                <td>{{ event.Tgl_Selesai }}</td>
               </tr>
               <tr>
                 <th scope="col">Kategori</th>
-                <td>S200</td>
+                <td>{{ event.Kategori }}</td>
               </tr>
               <tr>
                 <th scope="col">Kapasitas</th>
-                <td>50/64</td>
-              </tr>
-              <tr>
-                <th scope="col">Negara</th>
-                <td>Indonesia</td>
+                <td>{{ event.Kapasitas }} orang atau pasangan / partai</td>
               </tr>
               <tr>
                 <th scope="col">Stadium</th>
-                <td>GBK</td>
+                <td>{{ event.Nama_Stadium }}</td>
+              </tr>
+              <tr>
+                <th scope="col">Negara</th>
+                <td>{{ event.Negara }}</td>
               </tr>
             </tbody>
           </table>
@@ -65,7 +65,6 @@
               <tr>
                 <td>Tunggal Putra</td>
                 <td>-</td>
-                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
               </tr>
               <tr>
                 <td>Ganda Putra</td>
@@ -77,7 +76,6 @@
                     <option value="3">Atlet 3</option>
                   </select>
                 </td>
-                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
               </tr>
               <tr>
                 <td>Ganda Campuran</td>
@@ -89,7 +87,6 @@
                     <option value="3">Atlet 3</option>
                   </select>
                 </td>
-                <td><button class="btn btn-primary" type="submit"><a href="{% url 'atlet:enrolled_event' %}">Join</a></button></td>
               </tr>
             </tbody>
           </table>

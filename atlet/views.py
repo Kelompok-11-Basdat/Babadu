@@ -140,15 +140,26 @@ def pilih_stadium(request, pk):
     # stadium = execute(query_stadium)
     # print(stadium)
 
-    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai > CURRENT_DATE".format(pk)
+    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai < CURRENT_DATE".format(pk)
     events = execute(query_events)
-    print(events)
-
+    
     context = {
-        # 'stadium': stadium,
         'events': events
     }
     return render(request, "pilih_event.html", context)
+
+def pilih_partai(request, pk):
+    query_event_information = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Tgl_Selesai, Kategori_superseries, Nama_Stadium, event.Negara FROM EVENT JOIN stadium s on s.nama = event.nama_stadium WHERE Nama_Event = '{}'".format(pk)
+    event = execute(query_event_information)
+    print(pk)
+
+    # query_partai_kompetisi = "SELECT Kategori_Partner, COUNT(*) AS Total_Pemain FROM PARTAI_KOMPETISI WHERE Nama_Event = '{}' GROUP BY Kategori_Partner".format(pk)
+    # partai = execute(query_partai_kompetisi)
+    context = {
+        'event': event,
+        # 'partai': partai
+    }
+    return render(request,"pilih_partai.html", context)
 
 def pilih_kategori(request, stadium, event):
     return render(request, "pilih_kategori.html")
