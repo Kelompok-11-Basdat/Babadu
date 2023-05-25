@@ -38,6 +38,7 @@ def show_register(request):
                 return redirect('authentication:login')
             else:
                 messages.info(request,data['msg'])
+
         elif 'submitUmpire' in request.POST:
             nama = request.POST.get('nama')
             email = request.POST.get('email')
@@ -152,12 +153,31 @@ def register_pelatih(nama, email, spesialisasi, tanggal_mulai):
 def register_umpire(nama, email, negara):
     try:
         id = uuid.uuid4()
-        cursor = connection.cursor()
-        cursor.execute("SET SEARCH_PATH TO BABADU;")
-        query_member = sql_insert_member(id, nama, email)
-        cursor.execute(query_member)
-        query_umpire = sql_insert_umpire(id, negara)
-        cursor.execute(query_umpire)
+
+        # create new MEMBER Table Row
+        executeUPDATE(f"""
+        INSERT INTO
+            MEMBER (id, nama, email) 
+        VALUES
+            (
+                '{id}',
+                '{nama}',
+                '{email}'
+            );
+        """)
+
+
+        # create new MEMBER Table Row
+        executeUPDATE(f"""
+        INSERT INTO
+            UMPIRE (ID, Negara)
+        VALUES
+            (
+                '{id}',
+                '{negara}'
+            );
+        """)
+
     except InternalError as e:
         return {
             'success': False,
