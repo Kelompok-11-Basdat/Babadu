@@ -265,7 +265,14 @@ def login(request):
             print(request.session['is_pelatih'])
             print(request.session['is_umpire'])
 
-            return redirect('atlet:riwayat_ujian_kualifikasi') # sementara ini pake ini karena blm ada dashboard
+            if request.session['is_atlet'] == True :
+                return redirect('dashboard_atlet:show_dashboard_atlet')
+            if request.session['is_pelatih'] == True :
+                return redirect('dashboard_pelatih:show_dashboard_pelatih')
+            if request.session['is_umpire'] == True :
+                return redirect('dashboard_umpire:show_dashboard_umpire')
+
+            return redirect('dashboard_atlet:show_dashboard_atlet')
         else:
             messages.info(request,'Nama atau Email salah')
 

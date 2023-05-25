@@ -36,10 +36,10 @@ def atlet_ikut_ujian(request):
                 AND tanggal = '{tanggal}'
         """)
 
-        print("INI KALO GAK NONE")
+        print(testIsinya)
 
-        if testIsinya == None :
-            
+        if testIsinya == [] :
+
             executeUPDATE(f"""
                 INSERT INTO ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI (ID_Atlet, Tahun, Batch, Tempat, Tanggal, Hasil_Lulus)
                 VALUES ('{request.session['id']}', {tahun}, {batch}, '{tempat}', '{tanggal}', 'false');
@@ -178,11 +178,7 @@ def ujian_kualifikasi(request):
     return render(request, "ujian_kualifikasi.html", context)
 
 def get_riwayat_ujian_kualifikasi(request):
-    #GET RIWAYAT UJIAN KUALIFIKASI
-    # riwayat_ujian_kualifikasi = execute(f"""
-    # SELECT tahun, batch, tempat, tanggal, hasil_lulus FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
-    # WHERE id_atlet = '{request.session['id']}';
-    # """)
+    print(request.session['id'])
 
     riwayat_ujian_kualifikasi = execute(f"""
     SELECT 
