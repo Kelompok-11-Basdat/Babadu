@@ -12,6 +12,7 @@ from django.contrib import messages
 from util.query import *
 from atlet.query import *
 from Babadu.helper.function import *
+
 def show_dashboard_atlet(request):
     data = execute(f"""
     SELECT
@@ -57,15 +58,3 @@ GROUP BY
     }
     return render(request, "dashboard_atlet.html", context)
 
-
-def pilih_partai(request, pk):
-    event = execute(f"""
-        SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Tgl_Selesai, Kategori_superseries, Nama_Stadium, event.Negara, s.kapasitas
-        FROM EVENT
-        JOIN stadium s ON s.nama = event.nama_stadium
-        WHERE Nama_Event = '{pk}';
-    """)
-    context = {
-        'event': event,
-    }
-    return render(request,"pilih_partai.html", context)
