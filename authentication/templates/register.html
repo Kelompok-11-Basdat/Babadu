@@ -1,0 +1,232 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | LOGIN </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+    <!-- P<main>
+    <!-- Pills navs -->
+  
+
+        <div class="d-flex vh-80 mx-auto justify-content-center align-items-center">
+            <div class="col-md-4 p-5 shadow-sm border rounded-5 border-primary">
+                <h1 class="text-center mb-4 text-primary">Register</h1>
+                <div class="mb-5">
+                    <nav class="nav nav-pills flex-column flex-sm-row" id="nav-member">
+                        <a class="flex-sm-fill text-sm-center nav-link current" aria-current="page"
+                            href="#form-atlet">Atlet</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="#form-pelatih">Pelatih</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="#form-umpire">Umpire</a>
+                    </nav>
+                </div>
+
+                <!-- FORM ATLET -->
+                <form id="form-atlet" method="POST" action="{% url 'authentication:register' %}">
+                    {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNama" class="form-label">Nama</label>
+                        <input type="name" class="form-control border border-primary" name="nama" id="nama"
+                            aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputNegara" class="form-label">Negara</label>
+                        <input class="form-control border border-primary" id="negara" name="negara_asal" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTTL" class="form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control border border-primary" id="tgl_lahir" name="tgl_lahir" required>
+                    </div>
+                    <div class="mb-3">
+                        <p class="form-label">Play</p>
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-check-input border border-primary" type="radio"
+                                    name="play_right" id="playRightRadio" value="True" required>
+                                <label class="form-check-label" for="playRadioButton">
+                                    Right
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input class="form-check-input border border-primary" type="radio"
+                                    name="play_right" id="playLeftRadio" value="False" required>
+                                <label class="form-check-label" for="flexRadioDplayRadioButtonefault1">
+                                    Left
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTinggi" class="form-label">Tinggi Badan</label>
+                        <input type="number" class="form-control border border-primary" id="height" name="height" required>
+                    </div>
+                    <div class="mb-3">
+                        <p class="form-label">Jenis Kelamin</p>
+
+                        <select class="form-control border border-primary form-select"
+                            aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option selected>Pilih</option>
+                            <option value="True">Laki-laki</option>
+                            <option value="False">Perempuan</option>
+
+                        </select>
+                    </div>
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitAtlet">Daftar</button>
+                    </div>
+                </form>
+
+                <!-- FORM PELATIH -->
+                <form id="form-pelatih" method="POST" action="{% url 'authentication:register' %}">
+                {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNama" class="form-label">Nama</label>
+                        <input type="name" class="form-control border border-primary" id="nama" name="nama"
+                            aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <p class="form-label">Kategori</p>
+                        <div class="container px-0">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input border border-primary" type="checkbox" value="Tunggal Putra"
+                                            id="spesialisasi" name="spesialisasi">
+                                        <label class="form-check-label" for="spesialisasi">
+                                            Tunggal Putra
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input border border-primary" type="checkbox" value="Tunggal Putri"
+                                            id="spesialisasi" name="spesialisasi">
+                                        <label class="form-check-label" for="spesialisasi">
+                                            Tunggal Putri
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Putra"
+                                            id="spesialisasi" name="spesialisasi">
+                                        <label class="form-check-label" for="spesialisasi">
+                                            Ganda Putra
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Putri"
+                                            id="spesialisasi" name="spesialisasi">
+                                        <label class="form-check-label" for="spesialisasi">
+                                            Ganda Putri
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Campuran"
+                                            id="spesialisasi" name="spesialisasi">
+                                        <label class="form-check-label" for="spesialisasi">
+                                            Ganda Campuran
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTglMulai" class="form-label">Tanggal Mulai</label>
+                        <input type="date" class="form-control border border-primary" id="tanggal_mulai" name="tanggal_mulai" required>
+                    </div>
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitPelatih">Daftar</button>
+                    </div>
+                </form>
+
+                <!-- FORM UMPIRE -->
+                <form id="form-umpire" method="POST" action="{% url 'authentication:register' %}">
+                {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNama" class="form-label">Nama</label>
+                        <input type="name" class="form-control border border-primary" id="nama" name="nama"
+                            aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputNegara" class="form-label">Negara</label>
+                        <input class="form-control border border-primary" id="negara" name="negara" required>
+                    </div>
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitUmpire">Daftar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <!-- Pills content -->
+</main>
+
+<script>
+    // Get the container element
+    var btnContainer = document.getElementById("nav-member");
+
+    // Get all buttons with class="btn" inside the container
+    var btns = btnContainer.getElementsByClassName("nav-link");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("current");
+            current[0].className = current[0].className.replace("current", "");
+            this.className += " current";
+        });
+
+    }
+</script>
+
+<style>
+    form {
+        display: none;
+    }
+
+    form:target {
+        display: block;
+    }
+
+    .current {
+        background: #bfe2e2 !important;
+        background-color: #bfe2e2 !important;
+        color: #3b797f;
+    }
+
+</style>
+
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<!-- </main> -->
+{% endblock content %}
