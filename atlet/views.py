@@ -29,20 +29,20 @@ def atlet_ikut_ujian(request):
                 tempat, 
                 tanggal
             FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
-            WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+            WHERE id_atlet = '{request.session['id']}'
                 AND tahun = '{tahun}'
                 AND batch = '{batch}'
                 AND tempat = '{tempat}'
                 AND tanggal = '{tanggal}'
         """)
 
-        print("INI KALO GAK NONE")
+        print(testIsinya)
 
-        if testIsinya == None :
-            
+        if testIsinya == [] :
+
             executeUPDATE(f"""
                 INSERT INTO ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI (ID_Atlet, Tahun, Batch, Tempat, Tanggal, Hasil_Lulus)
-                VALUES ('cd5fa76b-a614-44be-a639-0edc650f7dd2', {tahun}, {batch}, '{tempat}', '{tanggal}', 'false');
+                VALUES ('{request.session['id']}', {tahun}, {batch}, '{tempat}', '{tanggal}', 'false');
                 """)
             
             print("INI KALO NONE")
@@ -62,17 +62,17 @@ def tes_kualifikasi(request):
     elif request.method == 'POST':
         lulus = request.POST.get('lulus')
         if lulus == 'true' :
-            executeUPDATE("""
+            executeUPDATE(f"""
                 UPDATE ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
                 SET Hasil_Lulus = true
-                WHERE ID_Atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+                WHERE ID_Atlet = '{request.session['id']}'
                     AND (Tahun, Batch, Tempat, Tanggal) = (
                         SELECT Tahun, Batch, Tempat, Tanggal
                         FROM (
                             SELECT Tahun, Batch, Tempat, Tanggal,
                                 ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS row_num
                             FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI
-                            WHERE ID_Atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2'
+                            WHERE ID_Atlet = '{request.session['id']}'
                             GROUP BY Tahun, Batch, Tempat, Tanggal
                         ) AS subquery
                         WHERE row_num = 1
@@ -88,7 +88,7 @@ def tes_kualifikasi(request):
                 tanggal, 
                 hasil_lulus 
             FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
-            WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2';
+            WHERE id_atlet = '{request.session['id']}';
             """)
 
             context = {
@@ -115,11 +115,11 @@ def sql_get_status_kualifikasi(id):
     WHERE A.ID = '{id}';
     """
 
-"""
-    UPDATE atlet_nonkualifikasi_ujian_kualifikasi
-    SET Hasil_Lulus = true
-    WHERE ID_Atlet = '{id}';
-    """
+# """
+#     UPDATE atlet_nonkualifikasi_ujian_kualifikasi
+#     SET Hasil_Lulus = true
+#     WHERE ID_Atlet = '{id}';
+#     """
 
 def daftar_event(request):
     stadium = execute("""
@@ -178,11 +178,7 @@ def ujian_kualifikasi(request):
     return render(request, "ujian_kualifikasi.html", context)
 
 def get_riwayat_ujian_kualifikasi(request):
-    #GET RIWAYAT UJIAN KUALIFIKASI
-    # riwayat_ujian_kualifikasi = execute(f"""
-    # SELECT tahun, batch, tempat, tanggal, hasil_lulus FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
-    # WHERE id_atlet = '{request.session['id']}';
-    # """)
+    print(request.session['id'])
 
     riwayat_ujian_kualifikasi = execute(f"""
     SELECT 
@@ -192,7 +188,7 @@ def get_riwayat_ujian_kualifikasi(request):
         tanggal, 
         hasil_lulus 
     FROM ATLET_NONKUALIFIKASI_UJIAN_KUALIFIKASI a JOIN MEMBER m ON a.ID_Atlet = m.id 
-    WHERE id_atlet = 'cd5fa76b-a614-44be-a639-0edc650f7dd2';
+    WHERE id_atlet = '{request.session['id']}';
     """)
 
     context = {
