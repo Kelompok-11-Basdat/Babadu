@@ -9,12 +9,12 @@
 {% block content %}
 
 <main>
-        <div class="d-flex vh-80 mx-auto justify-content-center align-items-center">
-            <div class="col-md-4 p-5 shadow-sm border rounded-5 border-primary">
-                <h1 class="text-center mb-4 text-primary">Register</h1>
+        <div class="d-flex vh-80 mx-auto justify-content-center align-items-center color" style="background-color: #889eb4; height: 120vh;"  >
+            <div class="col-md-4 p-5 shadow-sm border rounded-5">
+                <h1 class="text-center mb-4 custom-heading">Register</h1>
                 <div class="mb-5">
                     <nav class="nav nav-pills flex-column flex-sm-row" id="nav-member">
-                        <a class="flex-sm-fill text-sm-center nav-link current" aria-current="page"
+                        <a class="flex-sm-fill text-sm-center nav-link selected" aria-selected="page"
                             href="#form-atlet">Atlet</a>
                         <a class="flex-sm-fill text-sm-center nav-link" href="#form-pelatih">Pelatih</a>
                         <a class="flex-sm-fill text-sm-center nav-link" href="#form-umpire">Umpire</a>
@@ -26,33 +26,33 @@
                     {%csrf_token%}
                     <div class="mb-3">
                         <label for="inputNama" class="form-label">Nama</label>
-                        <input type="name" class="form-control border border-primary" name="nama" id="nama"
+                        <input type="name" class="form-control border" name="nama" id="nama"
                             aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                        <input type="email" class="form-control border" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputNegara" class="form-label">Negara</label>
-                        <input class="form-control border border-primary" id="negara" name="negara_asal" required>
+                        <input class="form-control border" id="negara" name="negara_asal" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputTTL" class="form-label">Tanggal Lahir</label>
-                        <input type="date" class="form-control border border-primary" id="tgl_lahir" name="tgl_lahir" required>
+                        <input type="date" class="form-control border" id="tgl_lahir" name="tgl_lahir" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label">Play</p>
                         <div class="row">
                             <div class="col">
-                                <input class="form-check-input border border-primary" type="radio"
+                                <input class="form-check-input border" type="radio"
                                     name="play_right" id="playRightRadio" value="True" required>
                                 <label class="form-check-label" for="playRadioButton">
                                     Right
                                 </label>
                             </div>
                             <div class="col">
-                                <input class="form-check-input border border-primary" type="radio"
+                                <input class="form-check-input border" type="radio"
                                     name="play_right" id="playLeftRadio" value="False" required>
                                 <label class="form-check-label" for="flexRadioDplayRadioButtonefault1">
                                     Left
@@ -63,12 +63,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputTinggi" class="form-label">Tinggi Badan</label>
-                        <input type="number" class="form-control border border-primary" id="height" name="height" required>
+                        <input type="number" class="form-control border" id="height" name="height" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label">Jenis Kelamin</p>
 
-                        <select class="form-control border border-primary form-select"
+                        <select class="form-control border form-select"
                             aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
                             <option selected>Pilih</option>
                             <option value="True">Laki-laki</option>
@@ -86,12 +86,12 @@
                 {%csrf_token%}
                     <div class="mb-3">
                         <label for="inputNama" class="form-label">Nama</label>
-                        <input type="name" class="form-control border border-primary" id="nama" name="nama"
+                        <input type="name" class="form-control border " id="nama" name="nama"
                             aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                        <input type="email" class="form-control border " id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label">Kategori</p>
@@ -99,7 +99,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input border border-primary" type="checkbox" value="Tunggal Putra"
+                                        <input class="form-check-input border " type="checkbox" value="Tunggal Putra"
                                             id="spesialisasi" name="spesialisasi">
                                         <label class="form-check-label" for="spesialisasi">
                                             Tunggal Putra
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input border border-primary" type="checkbox" value="Tunggal Putri"
+                                        <input class="form-check-input border " type="checkbox" value="Tunggal Putri"
                                             id="spesialisasi" name="spesialisasi">
                                         <label class="form-check-label" for="spesialisasi">
                                             Tunggal Putri
@@ -119,7 +119,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Putra"
+                                        <input class="form-check-input border " type="checkbox" value="Ganda Putra"
                                             id="spesialisasi" name="spesialisasi">
                                         <label class="form-check-label" for="spesialisasi">
                                             Ganda Putra
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Putri"
+                                        <input class="form-check-input border " type="checkbox" value="Ganda Putri"
                                             id="spesialisasi" name="spesialisasi">
                                         <label class="form-check-label" for="spesialisasi">
                                             Ganda Putri
@@ -139,7 +139,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input border border-primary" type="checkbox" value="Ganda Campuran"
+                                        <input class="form-check-input border " type="checkbox" value="Ganda Campuran"
                                             id="spesialisasi" name="spesialisasi">
                                         <label class="form-check-label" for="spesialisasi">
                                             Ganda Campuran
@@ -152,7 +152,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputTglMulai" class="form-label">Tanggal Mulai</label>
-                        <input type="date" class="form-control border border-primary" id="tanggal_mulai" name="tanggal_mulai" required>
+                        <input type="date" class="form-control border " id="tanggal_mulai" name="tanggal_mulai" required>
                     </div>
                     <div class="d-grid mt-5">
                         <button class="btn btn-primary" type="submit" name="submitPelatih">Daftar</button>
@@ -164,16 +164,16 @@
                 {%csrf_token%}
                     <div class="mb-3">
                         <label for="inputNama" class="form-label">Nama</label>
-                        <input type="name" class="form-control border border-primary" id="nama" name="nama"
+                        <input type="name" class="form-control border" id="nama" name="nama"
                             aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control border border-primary" id="email" name="email" required>
+                        <input type="email" class="form-control border" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputNegara" class="form-label">Negara</label>
-                        <input class="form-control border border-primary" id="negara" name="negara" required>
+                        <input class="form-control border" id="negara" name="negara" required>
                     </div>
                     <div class="d-grid mt-5">
                         <button class="btn btn-primary" type="submit" name="submitUmpire">Daftar</button>
@@ -192,12 +192,12 @@
     // Get all buttons with class="btn" inside the container
     var btns = btnContainer.getElementsByClassName("nav-link");
 
-    // Loop through the buttons and add the active class to the current/clicked button
+    // Loop through the buttons and add the active class to the selected/clicked button
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("current");
-            current[0].className = current[0].className.replace("current", "");
-            this.className += " current";
+            var selected = document.getElementsByClassName("selected");
+            selected[0].className = selected[0].className.replace("selected", "");
+            this.className += " selected";
         });
 
     }
@@ -212,10 +212,19 @@
         display: block;
     }
 
-    .current {
+    .selected {
         background: #bfe2e2 !important;
-        background-color: #bfe2e2 !important;
+        background-color: #3397f5 !important;
         color: #3b797f;
+    }
+    .color {
+        color:#2C3E50;
+    }
+
+    .custom-heading {
+    font-size: 30px;
+    text-align: center;
+    color: rgb(255, 255, 255);
     }
 
 </style>
