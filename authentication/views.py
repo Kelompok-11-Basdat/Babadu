@@ -91,9 +91,6 @@ def register_atlet(nama, email, negara_asal, tgl_lahir, play_right, height, jeni
                 {jenis_kelamin}
             );
         """)
-
-        # query_atlet = sql_insert_atlet(id, tgl_lahir, negara_asal, play_right, height, jenis_kelamin)
-        # cursor.execute(query_atlet)
     except InternalError as e:
         return {
             'success': False,
@@ -268,6 +265,13 @@ def login(request):
             print(request.session['is_pelatih'])
             print(request.session['is_umpire'])
 
+            if request.session['is_atlet'] == True :
+                return redirect('dashboard_atlet:show_dashboard_atlet')
+            if request.session['is_pelatih'] == True :
+                return redirect('dashboard_pelatih:show_dashboard_pelatih')
+            if request.session['is_umpire'] == True :
+                return redirect('dashboard_umpire:show_dashboard_umpire')
+
             return redirect('dashboard_atlet:show_dashboard_atlet')
         else:
             messages.info(request,'Nama atau Email salah')
@@ -292,5 +296,5 @@ def logout(request):
         print(request.session['is_atlet'])
         print(request.session['is_pelatih'])
         print(request.session['is_umpire'])
-        return redirect('/')
-    return redirect('/')
+        return redirect('authentication:login')
+    return redirect('')
