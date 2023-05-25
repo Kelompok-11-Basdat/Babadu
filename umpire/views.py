@@ -140,3 +140,19 @@ def riwayat_ujian_kualifikasi_umpire(request):
     }
 
     return render(request, "riwayat_ujian_kualifikasi_umpire.html", context)
+
+def list_event(request):
+    events = execute("""
+        SELECT e.Nama_event, e.Tahun, e.Nama_stadium, pk.Jenis_partai, e.Kategori_Superseries, e.Tgl_mulai, e.Tgl_selesai, COUNT(PPK.nomor_peserta) AS jumlah_peserta, S.Kapasitas
+        FROM EVENT e, STADIUM s, PARTAI_KOMPETISI pk, PARTAI_PESERTA_KOMPETISI ppk
+        WHERE e.Nama_event = pk.Nama_event AND e.Nama_stadium = s.Nama AND e.Tahun = pk.Tahun_event
+        AND ppk.Nama_event = pk.Nama_event AND ppk.Tahun_event = pk.Tahun_event
+        AND ppk.Jenis_partai = pk.Jenis_partai
+        GROUP BY e.Nama_event, e.Tahun, e.Nama_stadium, pk.Jenis_partai, e.Kategori_Superseries, e.Tgl_mulai, e.Tgl_selesai, s.Kapasitas;
+        """)
+    
+    context = {
+        "events": events
+    }
+
+    return render(request, "partai_kompetisi_event.html", context)

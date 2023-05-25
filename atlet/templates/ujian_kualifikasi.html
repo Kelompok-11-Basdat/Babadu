@@ -10,27 +10,27 @@
 
 <main>
     <!-- Pills navs -->
-    <div class="my-5 d-flex justify-content-center align-items-center">
-        <div class="container-xl p-5 shadow-sm border rounded-5 border-primary grad">
-            <h1 class="text-center mb-4 text-primary">List Ujian Kualifikasi</h1>
+    <div class="my-5 d-flex justify-content-center align-items-center"  style="background-color: #889eb4; height: 100vh;">
+        <div class="container-xl p-5 shadow-sm border rounded-5 grad">
+            <h1 class="text-center mb-4 custom-heading">List Ujian Kualifikasi</h1>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Tahun</th>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Tempat Pelaksanaan</th>
-                        <th scope="col">Tanggal Pelaksanaan</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="form-label" >Tahun</th>
+                        <th scope="col" class="form-label">Batch</th>
+                        <th scope="col" class="form-label">Tempat Pelaksanaan</th>
+                        <th scope="col" class="form-label">Tanggal Pelaksanaan</th>
+                        <th scope="col" class="form-label">Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider align-middle">
                     {% for ujian_kualifikasi in ujian_kualifikasi %}
                     <tr>
-                      <td id="tahun-{{forloop.counter}}" >{{ ujian_kualifikasi.tahun }}</td>
-                      <td id="batch-{{forloop.counter}}" >{{ ujian_kualifikasi.batch }}</td>
-                      <td id="tempat-{{forloop.counter}}" >{{ ujian_kualifikasi.tempat }}</td>
-                      <td id="tanggal-{{forloop.counter}}" >{{ ujian_kualifikasi.tanggal }}</td>
-                      <td><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Ikuti</a></button></td>
+                      <td id="tahun-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tahun }}</td>
+                      <td id="batch-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.batch }}</td>
+                      <td id="tempat-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tempat }}</td>
+                      <td id="tanggal-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tanggal }}</td>
+                      <td class="form-label"><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Ikuti</a></button></td>
                     </tr>
                    {% endfor %}
                 </tbody>
@@ -46,6 +46,24 @@
         --bs-table-striped-bg: #f2f9f8;
 
     }
+    .th {
+        color:white;
+    }
+
+    .custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+.table {
+--bs-table-striped-bg: #f2f9f8;
+
+}
+
+.form-label {
+    color:white;
+}
+
 </style>
 
 <!-- jQuery -->
