@@ -297,4 +297,4 @@ def logout(request):
         print(request.session['is_pelatih'])
         print(request.session['is_umpire'])
         return redirect('authentication:login')
-    return redirect('')
+    return redirect('authentication:login')
