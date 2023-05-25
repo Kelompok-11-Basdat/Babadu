@@ -16,38 +16,40 @@
           <table class="table table-bordered custom-table">
             <tbody class="table-group-divider bg-white">
               <tr>
+                {% for e in event %}
                 <th scope="col">Event</th>
-                <td>{{ event.Nama_Event }}</td>
+                <td>{{ e.nama_event }}</td>
               </tr>
               <tr>
                 <th scope="col">Hadiah</th>
-                <td>{{ event.Total_Hadiah }}</td>
+                <td>{{ e.total_hadiah }}</td>
 
               </tr>
               <tr>
                 <th scope="col">Tanggal Mulai</th>
-                <td>{{ event.Tgl_Mulai }}</td>
+                <td>{{ e.tgl_mulai }}</td>
               </tr>
               <tr>
                 <th scope="col">Tanggal Selesai</th>
-                <td>{{ event.Tgl_Selesai }}</td>
+                <td>{{ e.tgl_selesai }}</td>
               </tr>
               <tr>
                 <th scope="col">Kategori</th>
-                <td>{{ event.Kategori }}</td>
+                <td>{{ e.kategori_superseries }}</td>
               </tr>
               <tr>
                 <th scope="col">Kapasitas</th>
-                <td>{{ event.Kapasitas }} orang atau pasangan / partai</td>
+                <td>{{ e.kapasitas }} orang atau pasangan / partai</td>
               </tr>
               <tr>
                 <th scope="col">Stadium</th>
-                <td>{{ event.Nama_Stadium }}</td>
+                <td>{{ e.nama_stadium }}</td>
               </tr>
               <tr>
                 <th scope="col">Negara</th>
-                <td>{{ event.Negara }}</td>
+                <td>{{ e.negara }}</td>
               </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>

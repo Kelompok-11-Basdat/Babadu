@@ -122,9 +122,6 @@ def sql_get_status_kualifikasi(id):
     """
 
 def daftar_event(request):
-    # with connection.cursor() as cursor:
-    #     cursor.execute("SELECT Nama, Alamat, Kapasitas, Negara FROM STADIUM;")
-    #     stadium = cursor.fetchall()
     stadium = execute("""
                         SELECT Nama, Alamat, Kapasitas, Negara
                         FROM STADIUM;
@@ -149,15 +146,15 @@ def pilih_stadium(request, pk):
     return render(request, "pilih_event.html", context)
 
 def pilih_partai(request, pk):
-    query_event_information = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Tgl_Selesai, Kategori_superseries, Nama_Stadium, event.Negara FROM EVENT JOIN stadium s on s.nama = event.nama_stadium WHERE Nama_Event = '{}'".format(pk)
-    event = execute(query_event_information)
-    print(pk)
-
-    # query_partai_kompetisi = "SELECT Kategori_Partner, COUNT(*) AS Total_Pemain FROM PARTAI_KOMPETISI WHERE Nama_Event = '{}' GROUP BY Kategori_Partner".format(pk)
-    # partai = execute(query_partai_kompetisi)
+    event = execute(f"""
+        SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Tgl_Selesai, Kategori_superseries, Nama_Stadium, event.Negara, s.kapasitas
+        FROM EVENT
+        JOIN stadium s ON s.nama = event.nama_stadium
+        WHERE Nama_Event = '{pk}';
+    """)
+    print(event)
     context = {
         'event': event,
-        # 'partai': partai
     }
     return render(request,"pilih_partai.html", context)
 
