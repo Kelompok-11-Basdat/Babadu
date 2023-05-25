@@ -11,9 +11,9 @@ def show_dashboard_umpire(request):
     negara = execute(f"""SELECT u.negara FROM UMPIRE u WHERE u.id='{request.session['id']}'""")
     
     context = {
-        "nama": nama,
-        "email": email,
-        "negara": negara
+        "nama": nama[0]['nama'],
+        "email": email[0]['email'],
+        "negara": negara[0]['negara']
     }
     return render(request, "dashboard_umpire.html", context)
 

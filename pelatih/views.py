@@ -8,10 +8,10 @@ def show_dashboard_pelatih(request):
     tgl_mulai = execute(f"""SELECT p.tanggal_mulai FROM PELATIH p WHERE p.id='{request.session['id']}'""")
     
     context = {
-        "nama": nama,
-        "email": email,
-        "spesialisasi_kategori": spesialisasi,
-        "tgl_mulai": tgl_mulai
+        "nama": nama[0]['nama'],
+        "email": email[0]['email'],
+        "spesialisasi_kategori": spesialisasi[0]['spesialisasi'],
+        "tgl_mulai": tgl_mulai[0]['tanggal_mulai']
     }
     return render(request, "dashboard_pelatih.html", context)
 
