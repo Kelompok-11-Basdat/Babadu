@@ -1,36 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #2C3E50;
+      color: #FFF;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    h1 {
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #1ABC9C;
+    }
+    h2 {
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #FFF2B8;
+    }
+    .card {
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    }
+    .data-label {
+      font-weight: bold;
+    }
+    .data-value {
+      margin-bottom: 10px;
+    }
+    .qualified {
+      color: green;
+    }
+    .not-qualified {
+      color: red;
+    }
+  </style>
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <table>
-        <tr>
-            {% for column in columns %}
-            <th>{{ column }}</th>
-            {% endfor %}
-        </tr>
-        {% for row in data %}
-        <tr>
-            {% for value in row %}
-            <td>{{ value }}</td>
-            {% endfor %}
-        </tr>
+  <div class="container">
+    <h1>Profile Dashboard</h1>
+    <h2>ATLET</h2>
+    <div class="card">
+      <div class="row">
+          {% for d in data %}
+        <div class="col-6">
+          <div class="data-label">Nama Lengkap:</div>
+          <div class="data-value">{{ d.nama_lengkap }}</div>
+
+          <div class="data-label">Negara:</div>
+          <div class="data-value">{{ d.negara }}</div>
+
+          <div class="data-label">Email:</div>
+          <div class="data-value">{{ d.email }}</div>
+        
+        
+          <div class="data-label">Tanggal Lahir:</div>
+          <div class="data-value">{{ d.tanggal_lahir}}</div>
+
+          <div class="data-label">Play (Right/Left Hand):</div>
+          <div class="data-value qualified">{{ d.play }}</div>
+        
+        
+            <div class="data-label">Tinggi badan:</div>
+            <div class="data-value">{{ d.tinggi_badan }}</div>
+  
+            <div class="data-label">Jenis Kelamin:</div>
+            <div class="data-value qualified">{{ d.jenis_kelamin }}</div>
+          
+          
+            <div class="data-label">Pelatih:</div>
+            <div class="data-value">{{ d.pelatih }}</div>
+  
+            <div class="data-label">Status:</div>
+            <div class="data-value qualified">{{ d.status }}</div>
+          
+            <div class="data-label">World Rank:</div>
+            <div class="data-value">{{ d.world_rank }}</div>
+  
+            <div class="data-label">Total Poin:</div>
+            <div class="data-value qualified">{{ d.total_poin }}</div>
+        </div>
         {% endfor %}
-    </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>
