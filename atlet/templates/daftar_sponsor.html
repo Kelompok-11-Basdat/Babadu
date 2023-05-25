@@ -1,0 +1,77 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block meta %}
+<title>BaBaDu | ATLET </title>
+
+{% endblock meta %}
+
+{% block content %}
+
+<main>
+
+
+    <div class="my-5 d-flex justify-content-center align-items-center"  style="background-color: #889eb4; height: 100vh;">
+        <div class="col-md-4 p-5 shadow-sm border rounded-5">
+            <h1 class="custom-heading mb-3">Form Daftar Sponsor</h1>
+
+            <form id="form-tes-kualifikasi" method="POST" action="{% url 'atlet:daftar_sponsor' %}">
+                {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="inputNoBatch" class="form-label">Nama Sponsor</label>
+                        <select class="form-control border border-primary" id="nama" name="nama" required>
+                            {% for sponsor in sponsor %}
+                                <option value="{{ sponsor.nama_event }}">{{ sponsor.nama_event }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTanggalM" class="form-label">Tanggal Mulai</label>
+                        <input type="date" class="form-control border border-primary" id="tanggalmulai" name="tanggalmulai" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTanggalS" class="form-label">Tanggal Selesai</label>
+                        <input type="date" class="form-control border border-primary" id="tanggalselesai" name="tanggalselesai" required>
+                    </div>
+    
+    
+                    <div class="d-grid mt-5">
+                        <button class="btn btn-primary" type="submit" name="submitFormUjian"><a href="{% url 'atlet:list_sponsor' %}">Submit</a></button>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+
+    <!-- Pills content -->
+</main>
+
+
+<style>
+.custom-heading {
+  font-size: 30px;
+  text-align: center;
+  color:white;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-label {
+    color:white;
+}
+</style>
+
+</style>
+
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<!-- </main> -->
+{% endblock content %}

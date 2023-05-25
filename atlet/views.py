@@ -138,7 +138,7 @@ def pilih_stadium(request, pk):
     # stadium = execute(query_stadium)
     # print(stadium)
 
-    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai < CURRENT_DATE".format(pk)
+    query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai > CURRENT_DATE".format(pk)
     events = execute(query_events)
     
     context = {
@@ -198,5 +198,88 @@ def get_riwayat_ujian_kualifikasi(request):
 
     return render(request, "riwayat_ujian_kualifikasi.html", context)
 
+def get_enrolled_partai_kompetisi_event(request):
+    enrolled_partai_kompetisi_event = execute(f"""
+        SELECT e.Nama_Event, Tahun, Nama_Stadium, Jenis_Partai, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
+        FROM EVENT e, PARTAI_KOMPETISI p 
+        WHERE e.Nama_Event = p.Nama_Event AND Tahun = Tahun_Event;
+    """)
+    context = {
+        'enrolled_partai_kompetisi_event': enrolled_partai_kompetisi_event,
+    }
+    return render(request,"enrolled_partai_kompetisi_event.html", context)
 
+def enrolled_event(request):
+    enrolled_event = execute(f"""
+        SELECT Nama_Event, Tahun, Nama_Stadium, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
+        FROM EVENT;
+    """)
+    context = {
+        'enrolled_event': enrolled_event,
+    }
+    return render(request,"enrolled_event.html", context)
 
+@csrf_exempt
+def daftar_sponsor(request):
+    if request.method == 'POST':
+        if 'submitFormUjian' in request.POST:
+            nama = request.POST.get('nama')
+            tanggalmulai = request.POST.get('tanggalmulai')
+            tanggalselesai = request.POST.get('tanggalselesai')
+            data = buat_sponsor(nama, tanggalmulai, tanggalselesai, request)
+            if data['success']:
+                return redirect('atlet:list_sponsor')
+            else:
+                messages.info(request,data['msg'])
+    return render(request, "daftar_sponsor.html")
+
+def list_sponsor(request):
+    print(request.session['id'])
+
+    list_sponsor = execute(f"""
+        SELECT Nama_Brand, Tgl_Mulai, Tgl_Selesai 
+        FROM SPONSOR, ATLET_SPONSOR 
+        WHERE ID = ID_Sponsor AND ID_Atlet = '{request.session['id']}';
+    """)
+    context = {
+        'list_sponsor': list_sponsor,
+    }
+    return render(request,"list_sponsor.html", context)
+
+def buat_sponsor(nama, tanggalmulai, tanggalselesai, request):
+    try:
+        executeUPDATE(f"""
+        INSERT INTO 
+            ATLET_SPONSOR(ID_Atlet, ID_Sponsor, Tgl_Mulai, Tgl_Selesai)
+        VALUES
+        (
+            (SELECT DISCTINCT ID FROM SPONSOR WHERE Nama_Brand = '{nama}'),
+            '{request.session['id']}',
+            '{tanggalmulai}',
+            '{tanggalselesai}'
+        );
+        """)
+    except InternalError as e:
+        return {
+            'success': False,
+            'msg': str(e.args)
+        }
+    else:
+        return {
+            'success': True,
+        }
+
+def dropdown(request):
+    sponsor = execute(f"""
+        SELECT DISTINCT s.Nama_Brand
+        FROM SPONSOR s
+        WHERE s.ID NOT IN (
+        SELECT ID_SPONSOR
+        FROM ATLET_SPONSOR
+        WHERE ID_ATLET = '{request.session['id']}'
+        );
+    """)
+    context = {
+        'sponsor': sponsor,
+    }
+    return render(request,"daftar_sponsor.html", context)
