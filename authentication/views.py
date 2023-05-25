@@ -244,10 +244,9 @@ def login(request):
             M.Nama = '{name}' and M.email = '{email}';
         """
 
-        cursor = connection.cursor()
-        cursor.execute("set search_path to babadu;")
-        cursor.execute(query)
-        data = fetch(cursor)
+ 
+        data = execute(query)
+
         request.session['is_atlet'] = False
         request.session['is_pelatih'] = False
         request.session['is_umpire'] = False
@@ -268,6 +267,7 @@ def login(request):
             print(request.session['is_atlet'])
             print(request.session['is_pelatih'])
             print(request.session['is_umpire'])
+
             return redirect('pink:r_daftar_atlet') # sementara ini pake ini karena blm ada dashboard
         else:
             messages.info(request,'Nama atau Email salah')
