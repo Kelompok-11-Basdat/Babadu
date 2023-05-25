@@ -79,26 +79,8 @@ def tes_kualifikasi(request):
                     );
                 """)
             
-            world_tour = execute(f"""
-            SELECT 
-                MAX(world_rank)
-            FROM ATLET_KUALIFIKASI
-            WHERE id_atlet = '{request.session['id']}'
-            """)
-
-            world_tour+=1
-
-            executeUPDATE(f"""
-                INSERT INTO ATLET_KUALIFIKASI VALUES
-                ('{request.session['id']}', {world_tour}, {world_tour}),
-                    );
-                """)
-            
-            executeUPDATE(f"""
-                DELETE FROM atlet_non_kualifikasi
-                WHERE id_atlet = '{request.session['id']}';
-            """)
-            
+            # WHERE id_atlet = '{request.session['id']}';
+        
             riwayat_ujian_kualifikasi = execute(f"""
             SELECT 
                 tahun, 
@@ -134,6 +116,11 @@ def sql_get_status_kualifikasi(id):
     WHERE A.ID = '{id}';
     """
 
+# """
+#     UPDATE atlet_nonkualifikasi_ujian_kualifikasi
+#     SET Hasil_Lulus = true
+#     WHERE ID_Atlet = '{id}';
+#     """
 
 def daftar_event(request):
     stadium = execute("""
@@ -147,7 +134,9 @@ def daftar_event(request):
     return render(request, "daftar_event.html", context)
 
 def pilih_stadium(request, pk):
-
+    # query_stadium = "SELECT Nama, Alamat, Kapasitas, Negara FROM STADIUM WHERE Nama = '{}' LIMIT 1".format(pk)
+    # stadium = execute(query_stadium)
+    # print(stadium)
 
     query_events = "SELECT Nama_Event, Total_Hadiah, Tgl_Mulai, Kategori_superseries FROM EVENT WHERE Nama_Stadium = '{}' AND Tgl_Mulai > CURRENT_DATE".format(pk)
     events = execute(query_events)
