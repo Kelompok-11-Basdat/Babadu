@@ -10,7 +10,7 @@ urlpatterns = [
     path('daftar-event/', daftar_event, name='daftar_event' ),
     path('pilih_stadium/<str:pk>/', pilih_stadium, name='pilih_stadium'),
     path('riwayat-ujian-kualifikasi/', get_riwayat_ujian_kualifikasi, name='riwayat_ujian_kualifikasi' ),
-
+    path('pilih_partai/<str:pk>/', pilih_partai, name='pilih_partai'),
     path('atlet-ikut-ujian/', atlet_ikut_ujian, name='atlet_ikut_ujian' ),
 
 ]
