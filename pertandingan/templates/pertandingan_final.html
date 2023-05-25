@@ -3,6 +3,7 @@
 
 {% block meta %}
 <title>BaBaDu | Pertandingan Perempat</title>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 {% endblock meta %}
 
 {% block content %}
@@ -51,86 +52,5 @@
 <p></p>
 <h6></h6>
 </div>
-
-<style>
-    body {
-        background-color: #2C3E50;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 15px;
-        font-weight: 400;
-        color: #fff;
-        line-height: 30px;
-    }
-
-    table {
-      background-color: #fff;
-    }
-
-    table thead {
-      background-color: #1ABC9C;
-      color: #fff;
-    }
-
-    input[type="number"] {
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      appearance: textfield;
-    }
-    
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-    }
-    
-    .number-input {
-      border: 1px solid #ddd;
-      display: inline-flex;
-    }
-    
-    .number-input,
-    .number-input * {
-      box-sizing: border-box;
-    }
-    
-    .number-input button {
-      outline:none;
-      appearance: none;
-      background-color: transparent;
-      border: none;
-      align-items: center;
-      justify-content: center;
-      width: 1rem;
-      height: 1rem;
-      cursor: pointer;
-      margin: 1px;
-      position: relative;
-    }
-    
-    .number-input button:before,
-    .number-input button:after {
-      display: inline-block;
-      position: absolute;
-      content: '';
-      width: 0.5rem;
-      height: 1px;
-      background-color: #212121;
-      transform: translate(-50%, -50%);
-    }
-    .number-input button.plus:after {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-    
-    .number-input input[type=number] {
-      font-family: sans-serif;
-      max-width: 1.5rem;
-      padding: .2rem;
-      border: solid #ddd;
-      border-width: 0 1px;
-      font-size: 1rem;
-      height: 1rem;
-      text-align: center;
-    }
-
-</style>
 
 {% endblock content %}
