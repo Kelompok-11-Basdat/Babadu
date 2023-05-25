@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'dashboard_atlet',
     'pertandingan',
     'register'
+    'authentication'
 ]
 
 MIDDLEWARE = [
