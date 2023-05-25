@@ -16,8 +16,18 @@ def show_dashboard_pelatih(request):
 
 def latih_atlet(request):
   
-  return render(request, "form_latih_atlet.html")
+    return render(request, "form_latih_atlet.html")
 
 def show_atlet(request):
-  
-  return render(request, "form_latih_atlet.html")
+    atlet = execute(f"""
+            SELECT ma.nama, ma.email, a.world_rank
+            FROM MEMBER ma, MEMBER mp, PELATIH p, ATLET a, ATLET_PELATIH ap
+            WHERE mp.id = p.id AND ma.id = a.id AND ap.id_pelatih = p.id
+            AND a.id = ap.id_atlet AND mp.nama = '';
+            """)
+
+    context = {
+        "atlet": atlet,
+    }
+
+    return render(request, "show_atlet.html", context)
