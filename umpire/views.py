@@ -68,14 +68,14 @@ def show_daftar_atlet(request):
 
 def buat_tes_kualifikasi(tahun, batch, tempat, tanggal):
     try:
-        query = execute(f"""
+        executeUPDATE(f"""
         INSERT INTO 
             UJIAN_KUALIFIKASI(Tahun, Batch, Tempat, Tanggal)
         VALUES
         (
-            {tahun},
-            {batch},
-            {tempat},
+            '{tahun}',
+            '{batch}',
+            '{tempat}',
             '{tanggal}'
         );
         """)
