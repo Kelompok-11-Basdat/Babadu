@@ -16,21 +16,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" id="judul">Tahun</th>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Tempat Pelaksanaan</th>
-                        <th scope="col">Tanggal Pelaksanaan</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="form-label" >Tahun</th>
+                        <th scope="col" class="form-label">Batch</th>
+                        <th scope="col" class="form-label">Tempat Pelaksanaan</th>
+                        <th scope="col" class="form-label">Tanggal Pelaksanaan</th>
+                        <th scope="col" class="form-label">Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider align-middle">
                     {% for ujian_kualifikasi in ujian_kualifikasi %}
                     <tr>
-                      <td id="tahun-{{forloop.counter}}" >{{ ujian_kualifikasi.tahun }}</td>
-                      <td id="batch-{{forloop.counter}}" >{{ ujian_kualifikasi.batch }}</td>
-                      <td id="tempat-{{forloop.counter}}" >{{ ujian_kualifikasi.tempat }}</td>
-                      <td id="tanggal-{{forloop.counter}}" >{{ ujian_kualifikasi.tanggal }}</td>
-                      <td><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Ikuti</a></button></td>
+                      <td id="tahun-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tahun }}</td>
+                      <td id="batch-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.batch }}</td>
+                      <td id="tempat-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tempat }}</td>
+                      <td id="tanggal-{{forloop.counter}}" class="form-label" >{{ ujian_kualifikasi.tanggal }}</td>
+                      <td class="form-label"><button class="btn btn-primary" type="Ikuti" ><a id="{{forloop.counter}}" onclick="sendData(this.id)">Ikuti</a></button></td>
                     </tr>
                    {% endfor %}
                 </tbody>
@@ -51,10 +51,18 @@
     }
 
     .custom-heading {
-    font-size: 30px;
-    text-align: center;
-    color: black;
-    }
+  font-size: 30px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+.table {
+--bs-table-striped-bg: #f2f9f8;
+
+}
+
+.form-label {
+    color:white;
+}
 
 </style>
 
