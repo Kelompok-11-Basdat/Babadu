@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Shafa\Sem 4\basdat\Babadu\env"
+VIRTUAL_ENV="E:\File Perkuliahan\Semester 4\Basdat\Repo\TK3Riil\Babadu\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

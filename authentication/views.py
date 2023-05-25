@@ -268,7 +268,7 @@ def login(request):
             print(request.session['is_pelatih'])
             print(request.session['is_umpire'])
 
-            return redirect('pink:r_daftar_atlet') # sementara ini pake ini karena blm ada dashboard
+            return redirect('dashboard_atlet:show_dashboard_atlet')
         else:
             messages.info(request,'Nama atau Email salah')
 
