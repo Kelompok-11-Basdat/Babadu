@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>BABADU - E11</title>
+    <style>
+      body {
+        background-color: #2C3E50;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .title {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
+        background-color: #1ABC9C;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 0 10px;
+        border-radius: 10px;     
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="title">
+        <h1 style="font-size:40px;">WELCOME TO <span>BABADU - E11</span></h1>
+        <h3 style="font-size:20px;">Please Login or Register</h3>
+      </div>
+      <div class="btns" action="" method="POST" style="padding-top: 20px;">
+        <a class="btn btn-info" onclick="location.href = '/login'" style="border-radius: 8px;">Login</a>
+		    <a class="btn btn-info" onclick="location.href = '/register'" style="border-radius: 8px;">Register</a>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
