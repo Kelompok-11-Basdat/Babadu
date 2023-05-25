@@ -12,5 +12,8 @@ urlpatterns = [
     path('riwayat-ujian-kualifikasi/', get_riwayat_ujian_kualifikasi, name='riwayat_ujian_kualifikasi' ),
     path('pilih_partai/<str:pk>/', pilih_partai, name='pilih_partai'),
     path('atlet-ikut-ujian/', atlet_ikut_ujian, name='atlet_ikut_ujian' ),
-
+    path('enrolled-partai-kompetisi-event/', get_enrolled_partai_kompetisi_event, name='enrolled_partai_kompetisi_event' ),
+    path('enrolled-event/', enrolled_event, name='enrolled_event' ),
+    path('daftar-sponsor/', daftar_sponsor, name='daftar_sponsor' ),
+    path('list-sponsor/', list_sponsor, name='list_sponsor' ),
 ]

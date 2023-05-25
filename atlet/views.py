@@ -209,5 +209,47 @@ def get_riwayat_ujian_kualifikasi(request):
 
     return render(request, "riwayat_ujian_kualifikasi.html", context)
 
+def get_enrolled_partai_kompetisi_event(request):
+    enrolled_partai_kompetisi_event = execute(f"""
+        SELECT e.Nama_Event, Tahun, Nama_Stadium, Jenis_Partai, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
+        FROM EVENT e, PARTAI_KOMPETISI p 
+        WHERE e.Nama_Event = p.Nama_Event AND Tahun = Tahun_Event;
+    """)
+    context = {
+        'enrolled_partai_kompetisi_event': enrolled_partai_kompetisi_event,
+    }
+    return render(request,"enrolled_partai_kompetisi_event.html", context)
 
+def enrolled_event(request):
+    enrolled_event = execute(f"""
+        SELECT Nama_Event, Tahun, Nama_Stadium, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
+        FROM EVENT;
+    """)
+    context = {
+        'enrolled_event': enrolled_event,
+    }
+    return render(request,"enrolled_event.html", context)
+
+def daftar_sponsor(request):
+    daftar_sponsor = execute(f"""
+        SELECT Nama_Event, Tahun, Nama_Stadium, Kategori_Superseries, Tgl_Mulai, Tgl_Selesai 
+        FROM EVENT;
+    """)
+    context = {
+        'daftar_sponsor': daftar_sponsor,
+    }
+    return render(request,"daftar_sponsor.html", context)
+
+def list_sponsor(request):
+    print(request.session['id'])
+
+    list_sponsor = execute(f"""
+        SELECT Nama_Brand, Tgl_Mulai, Tgl_Selesai 
+        FROM SPONSOR, ATLET_SPONSOR 
+        WHERE ID = ID_Sponsor AND ID_Atlet = '{request.session['id']}';
+    """)
+    context = {
+        'list_sponsor': list_sponsor,
+    }
+    return render(request,"list_sponsor.html", context)
 
