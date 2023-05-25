@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from util.query import *
 
 def show_dashboard_pelatih(request):
     nama = execute(f"""SELECT m.nama FROM MEMBER m, PELATIH p WHERE m.id=p.id AND p.id='{request.session['id']}'""")

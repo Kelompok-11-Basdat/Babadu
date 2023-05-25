@@ -268,9 +268,9 @@ def login(request):
             if request.session['is_atlet'] == True :
                 return redirect('dashboard_atlet:show_dashboard_atlet')
             if request.session['is_pelatih'] == True :
-                return redirect('dashboard_pelatih:show_dashboard_pelatih')
+                return redirect('pelatih:show_dashboard_pelatih')
             if request.session['is_umpire'] == True :
-                return redirect('dashboard_umpire:show_dashboard_umpire')
+                return redirect('umpire:show_dashboard_umpire')
 
             return redirect('dashboard_atlet:show_dashboard_atlet')
         else:
